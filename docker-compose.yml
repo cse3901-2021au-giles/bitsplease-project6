@@ -1,0 +1,9 @@
+services:
+  rails:
+    image: bitsplease-project6
+    build: 
+      context: .
+    volumes:
+      - ./toy_app:/code
+    tty: true
+    stdin_open: true
