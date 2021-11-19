@@ -1,12 +1,16 @@
 FROM ruby:2.6.6
 SHELL ["/bin/bash", "-c", "-l"]
 ENV DEBIAN_FRONTEND noninteractive
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update &&  apt-get install -y \
      build-essential \
      vim \
      tmux \
      git \
      make \
+     nodejs \
+     yarn \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* 
 # Configure the main working directory. This is the base
