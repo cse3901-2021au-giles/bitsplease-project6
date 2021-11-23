@@ -3,6 +3,8 @@ services:
     image: bitsplease-project6
     build: 
       context: .
+    environment:
+      - POSTGRES_PASSWORD=bitsplease
     volumes:
       - .:/code
     tty: true
