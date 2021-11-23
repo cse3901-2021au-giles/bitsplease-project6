@@ -1,14 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-body {
-    padding-top: 60px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1;
-}
-    
+ 
 section {
     overflow: auto;  
 }
@@ -28,3 +20,15 @@ textarea {
 .title {
     font-weight: 700px;
 }
+
+.title-bar{
+    position: relative;
+    min-height: 150px;
+    background-color: RGB(206, 184, 136);
+    text-shadow: 20mm;
+}
+
+.navbar-nav{
+    padding-top: 50px;
+}
+
