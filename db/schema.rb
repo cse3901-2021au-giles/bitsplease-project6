@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_11_23_180438) do
   create_table "enrollments", force: :cascade do |t|
     t.bigint "user_id_id"
     t.bigint "course_id_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id_id"], name: "index_enrollments_on_course_id_id"
     t.index ["user_id_id"], name: "index_enrollments_on_user_id_id"
   end
