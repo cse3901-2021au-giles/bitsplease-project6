@@ -11,6 +11,8 @@ RUN apt-get update &&  apt-get install -y \
      make \
      nodejs \
      yarn \
+     postgresql \
+     postgresql-contrib \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* 
 # Configure the main working directory. This is the base
@@ -29,5 +31,5 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 EXPOSE 3000
 # The main command to run when the container starts. Also
 # tell the Rails dev server to bind to all interfaces by
-CMD /bin/bash
+CMD service postgresql start && /bin/bash
 #CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
