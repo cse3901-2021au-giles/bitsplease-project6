@@ -3,8 +3,9 @@
 <h2>
   This is the home page of Bits Please Group.
 </h2>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+<% if !logged_in? %>
+  <%= link_to "Log in", login_path %>
+<% end %>
 </div>
 
 <%= link_to image_tag("bit-pls.png", alt: "Rails logo", width: "100"),

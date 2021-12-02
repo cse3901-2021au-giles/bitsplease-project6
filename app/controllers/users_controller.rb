@@ -14,9 +14,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.password="password"
+    @user.password_confirmation="password"
     if @user.save
-      log_in @user
-      flash[:success]="Welome to Cat Me!"
+      flash[:success]="User created"
       redirect_to @user
     else
       render 'new'
