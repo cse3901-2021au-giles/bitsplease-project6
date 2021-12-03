@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
     @user = User.new(user_params)
     @user.password="password"
     @user.password_confirmation="password"

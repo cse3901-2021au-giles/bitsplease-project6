@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
     @team=Team.new
   end
   def create
+    byebug
     @team = Team.new(team_params)
     if @team.save(validate: false)
       flash[:success]="Team created!"
