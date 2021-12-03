@@ -12,24 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_12_02_182534) do
 
-  create_table "courses", force: :cascade do |t|
-    t.string "course_no"
-    t.string "semester"
-    t.bigint "instructor_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["instructor_id"], name: "index_courses_on_instructor_id"
-  end
-
-  create_table "enrollments", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "course_id_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id_id"], name: "index_enrollments_on_course_id_id"
-    t.index ["user_id_id"], name: "index_enrollments_on_user_id_id"
-  end
-
   create_table "feedbacks", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
@@ -83,13 +65,9 @@ ActiveRecord::Schema.define(version: 2021_12_02_182534) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "courses", "users", column: "instructor_id"
-  add_foreign_key "enrollments", "courses", column: "course_id_id"
-  add_foreign_key "enrollments", "users", column: "user_id_id"
   add_foreign_key "feedbacks", "projects"
   add_foreign_key "feedbacks", "users", column: "receiver_id"
   add_foreign_key "feedbacks", "users", column: "submitter_id"
   add_foreign_key "grades", "projects"
   add_foreign_key "grades", "users", column: "student_id"
-  add_foreign_key "projects", "courses"
-end
+ end
