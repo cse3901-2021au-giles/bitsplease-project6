@@ -3,9 +3,9 @@ class CreateFeedbacks < ActiveRecord::Migration[6.0]
     create_table :feedbacks do |t|
       t.integer :rating
       t.text :comment
-      t.references :submitter, index: true, foreign_key: {to_table: :users} 
-      t.references :receiver, index: true, foreign_key: {to_table: :users} 
-      t.references :project, index: true, foreign_key: {to_table: :projects} 
+      t.belongs_to :project
+      t.has_one :submitter, class_name: 'user'
+      t.has_one :project
       t.timestamps
     end
   end
