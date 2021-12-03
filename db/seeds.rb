@@ -10,14 +10,16 @@ User.create!(name: "Jesse Zheng",
              email: "jessezheng@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true)
+             admin: true,
+             user_role:"Super user")
 
 # Create a main sample user.
 User.create!(name: "Test User",
              email: "test_user@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: false)
+             admin: false,
+             user_role: "student")
 
 # Generate a bunch of additional users.
 99.times do |n|
@@ -29,14 +31,16 @@ User.create!(name: "Test User",
                email: email,
                password: password,
                password_confirmation: password,
-               admin: admin)
+               admin: admin,
+               user_role: "student")
 end
 # Create 5 admin users.
 User.create!(name: "Admin User",
              email: "admin_user@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true)
+             admin: true,
+             user_role:"instructor")
 
 # Generate a bunch of additional users.
 5.times do |n|
@@ -48,5 +52,6 @@ User.create!(name: "Admin User",
                email: email,
                password: password,
                password_confirmation: password,
-               admin: admin)
+               admin: admin,
+               user_role:"instructor")
 end

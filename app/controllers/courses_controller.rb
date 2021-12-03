@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
    
   def create
     @course = Course.new(course_params)
-    if @course.save
+    if @course.save(validate: false)
       flash[:success]="Course created!"
       redirect_to courses_url
     else
@@ -56,6 +56,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:course_no, :semester, user_ids:[])
+      p=params.require(:course).permit(:course_no, :semester, user_ids:[])
     end
 end

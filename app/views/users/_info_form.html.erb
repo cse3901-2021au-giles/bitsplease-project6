@@ -7,6 +7,20 @@
   <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
 
+  
+  <% if current_user.user_role=="Super user" %>
+  <%= f.select :user_role,["Instructor","Teaching Assistant"] %>
+  <% end %>
+
+ <% if current_user.user_role=="Instructor" %>
+  <%= f.select :user_role,["Teaching Assistant","Stuent"] %>
+  <% end %>
+ 
+  <% if current_user.user_role=="Teaching Assistant" %>
+  <%= f.select :user_role,["Student","Teaching Assistant"] %>
+  <% end %>
+  
+
   <% if @user==current_user %>
   <%= f.label :password %>
   <%= f.password_field :password, class: 'form-control' %>

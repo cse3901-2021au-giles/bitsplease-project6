@@ -4,18 +4,22 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   def new
    @user=User.new
+  
   end
   def index
     @users = User.paginate(page: params[:page])
   end
   def show
     @user=User.find(params[:id])
+    @roles=["Student","Teaching Assistant"]
   end
 
   def create
     @user = User.new(user_params)
     @user.password="password"
     @user.password_confirmation="password"
+    @user.admin=false;
+    @user.admin=true unless @user.user_role.eql?("Student");
     if @user.save
       flash[:success]="User created"
       redirect_to @user
@@ -47,8 +51,8 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                  :password_confirmation, team_ids:[])
+      params.require(:user).permit(:name, :email, :password, 
+                                  :password_confirmation, :user_role, team_ids:[])
 
   end
 
