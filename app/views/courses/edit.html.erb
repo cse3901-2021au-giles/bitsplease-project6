@@ -1,5 +1,7 @@
-<h1>Editing Course</h1>
+<% provide(:title, "Modify course") %>
+<% provide(:button_text, 'Save changes') %>
 
+<h1>Modify Course</h1>
 <%= render 'form', course: @course %>
 
 <%= link_to 'Show', @course %> |

@@ -1,4 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @course.course_no) %>
+<%= @course.course_no %> (<%= @course.semester %>)
+<br>
+<span class="num-association"><%= @course.users.length %> Instructor and teaching assistants</span>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<br>
+<div class='association-listing'>
+<% @course.users.each do |user| %>
+    <span><%= user.name %></span>
+<% end %>
+</div>
+<hr>
+<%= link_to 'Modify Course', edit_course_path(@course) %> |
+<%= link_to 'Course summary', courses_path %>
+

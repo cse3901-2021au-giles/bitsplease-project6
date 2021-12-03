@@ -1,3 +1,6 @@
+#Create a course
+Course.create!(course_no: "CSE-3901",
+semester: "Fall")
 # Create an test team
 Team.create!(name: "Test Team",
              description: "This is the first test team")

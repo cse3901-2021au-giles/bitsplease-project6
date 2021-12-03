@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_182534) do
+ActiveRecord::Schema.define(version: 2021_12_03_015608) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string "course_no"
+    t.string "semester"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "courses_users", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "user_id", null: false
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.integer "rating"
@@ -70,4 +82,5 @@ ActiveRecord::Schema.define(version: 2021_12_02_182534) do
   add_foreign_key "feedbacks", "users", column: "submitter_id"
   add_foreign_key "grades", "projects"
   add_foreign_key "grades", "users", column: "student_id"
- end
+  add_foreign_key "projects", "courses"
+end
