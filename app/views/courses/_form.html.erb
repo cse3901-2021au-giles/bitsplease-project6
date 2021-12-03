@@ -1,17 +1,26 @@
-<%= form_with(model: course, local: true) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+<%= form_with(model: @course, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @course %>
 
-      <ul>
-        <% course.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= f.label :course %>
+  <%= f.text_field :course_no, class: 'form-control' %>
+
+  <%= f.label :semester %>
+  <%= f.text_field :semester, class: 'form-control' %>
+
+ 
+    <%= f.label "Instructor and teaching assistants" %>
+    <div class="multi-selection">
+    <%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b| %>
+      <div class="collection-check-box">
+        <table><tr>
+        <td><%= b.check_box %></td>
+        <td><%= b.label %></td>
+        </tr></table>
+      </div>
+    <% end %>
     </div>
-  <% end %>
+</div>
+  
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
