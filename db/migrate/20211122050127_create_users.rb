@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :fname
       t.string :lname
       t.string :email
+      t.has_many :courses, through: :enrollments
       t.timestamps
     end
   end
