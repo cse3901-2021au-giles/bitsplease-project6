@@ -10,7 +10,8 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
   test "name should be present" do
-    @user.name = " "
+    @user.fname = " "
+    @user.lname = " "
     assert_not @user.valid?
   end
   test "email should be present" do
@@ -19,7 +20,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "name should not be too long" do
-    @user.name = "a" * 51
+    @user.fname = "a" * 51
+    @user.lname = "a" * 51
     assert_not @user.valid?
   end
 
