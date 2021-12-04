@@ -1,13 +1,23 @@
 <% provide(:title, @project.project_name) %>
+
 Project: <%= @project.project_name %>
-<br>
-<span class="num-association"><%= pluralize(@project.teams.length, "teams") %> </span>
+
+<div class="parent-info">
+    Course: <%= @project.course_no %>
+</div>
+
 
 <br>
+
 <div class='association-listing'>
-<% @project.teams.each do |t| %>
-    <span><%= t.name %></span>
-<% end %>
+    <span><%= pluralize(@project.teams.length, "teams") %> </span>
+
+    <br>
+
+    <% @project.teams.each do |t| %>
+        <span class="section-item"><%= t.name %></span>
+    <% end %>
+
 </div>
 
 <hr>

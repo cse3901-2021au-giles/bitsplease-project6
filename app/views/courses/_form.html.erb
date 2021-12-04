@@ -10,7 +10,7 @@
  
     <%= f.label "People (Instructor, TAs, and Students)" %>
     <div class="multi-selection">
-    <%= f.collection_check_boxes :user_ids, User.where.not(user_role: "Super user").order("user_role").order("name"), :id, :name do |b| %>
+    <%= f.collection_check_boxes :user_ids, User.where.not(user_role: "Super user").order("user_role").order("name"), :id, :user_display do |b| %>
       <div class="collection-check-box">
         <table><tr>
         <td><%= b.check_box %></td>

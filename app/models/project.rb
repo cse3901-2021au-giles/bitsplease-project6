@@ -3,4 +3,10 @@ class Project < ApplicationRecord
   validates :course_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   has_many :teams
+
+
+  def course_no
+    @c=Course.find_by(id: course_id)
+    @c.course_no unless @c.nil?
+  end
 end

@@ -16,5 +16,13 @@ class User < ApplicationRecord
                                                     BCrypt::Engine.cost
         BCrypt::Password.create(string, cost: cost)
     end
+
+    def user_display
+        "#{name} (#{user_role})"
+    end
+
+    def students
+        users.where(user_role: "Student")
+    end
         
 end

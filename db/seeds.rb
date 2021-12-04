@@ -59,7 +59,7 @@ User.create!(name: "Admin User",
              password:"password",
              password_confirmation: "password",
              admin: true,
-             user_role:"instructor")
+             user_role:"Instructor")
 
 # Create 5 more instructors.
 5.times do |n|
@@ -72,5 +72,5 @@ User.create!(name: "Admin User",
                password: password,
                password_confirmation: password,
                admin: admin,
-               user_role:"instructor")
+               user_role:"Instructor")
 end

@@ -1,22 +1,49 @@
 <% provide(:title, @course.course_no) %>
 <%= @course.course_no %> (<%= @course.semester %>)
-<br>
-<span class="num-association"><%= pluralize(@course.users.length, "instructor and teaching assistant") %> </span>
+
+
+
+<div class='association-listing'>
+
+<span><%= pluralize(@course.instructors.length, "Instructors") %> </span>
+
 
 <br>
-<div class='association-listing'>
-<% @course.users.each do |user| %>
-    <span><%= user.name %></span>
+<% @course.instructors.each do |user| %>
+    <span class="section-item"><%= user.name %></span>
+<% end %>
+
+
+<br>
+
+<span><%= pluralize(@course.tas.length, "Teaching Assistants") %> </span>
+
+
+<br>
+<% @course.tas.each do |user| %>
+    <span class="section-item"><%= user.name %></span>
+<% end %>
+
+
+<br>
+
+<span><%= pluralize(@course.students.length, "Students") %> </span>
+<br>
+
+<% @course.students.each do |user| %>
+    <span class="section-item"><%= user.name %></span>
 <% end %>
 </div>
+<br>
 
-<h3>Projects<h3>
-<span class="num-association"><%= pluralize(@course.projects.length, "project") %> </span>
+<h4>Projects</h4>
+    <div class='association-listing'>
+    <span><%= pluralize(@course.projects.length, "project") %> </span>
+    <br>
 
-<div class='association-listing'>
-<% @course.projects.each do |p| %>
-    <span><%= p.name %></span>
-<% end %>
+    <% @course.projects.each do |p| %>
+        <span class="section-item"><%= p.project_name %></span>
+    <% end %>
 </div>
 
 

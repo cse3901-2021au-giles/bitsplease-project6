@@ -218,24 +218,30 @@ div.multi-selection{
   font-weight: normal;
   padding-top: 5px;
 }
-
-
-span.num-association{
-  margin-left: 20px;
+div.parent-info{
+  margin: 10px 0 0 10px;
   font-size: small;
-  font-weight: bold;
 }
+
+
+
 .association-listing{
-  margin-left: 20px;
+  margin-left: 10px;
   width: 100%;
 }
 .association-listing span{
   font-size: smaller;
-  color: darkgray;
-  padding-right: 10px;
+  padding-left: 10px;
   min-width: 80px;
 }
-
+.association-listing .section-header {
+  color: black;
+  font-weight: bold;
+}
+.association-listing .section-item {
+  padding-left: 20px;
+  color: darkgray;
+ }
 select {
   height:32px;
   background-color: white;
