@@ -3,6 +3,7 @@
     <aside class="col-md-4">
         <section class="top">
             <h1>
+            <%= @user.name %> (<%= @user.user_role %>)
             <%= gravatar_for @user %>
             </h1>
         </section>

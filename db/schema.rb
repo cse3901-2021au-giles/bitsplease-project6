@@ -10,84 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_062452) do
+ActiveRecord::Schema.define(version: 2021_12_04_011903) do
 
   create_table "courses", force: :cascade do |t|
     t.string "course_no"
     t.string "semester"
-    t.bigint "instructor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["instructor_id"], name: "index_courses_on_instructor_id"
   end
 
-  create_table "enrollments", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "course_id_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id_id"], name: "index_enrollments_on_course_id_id"
-    t.index ["user_id_id"], name: "index_enrollments_on_user_id_id"
-  end
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.integer "rating"
-    t.text "comment"
-    t.bigint "submitter_id"
-    t.bigint "receiver_id"
-    t.bigint "project_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_feedbacks_on_project_id"
-    t.index ["receiver_id"], name: "index_feedbacks_on_receiver_id"
-    t.index ["submitter_id"], name: "index_feedbacks_on_submitter_id"
-  end
-
-  create_table "grades", force: :cascade do |t|
-    t.integer "score"
-    t.bigint "student_id"
-    t.bigint "project_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_grades_on_project_id"
-    t.index ["student_id"], name: "index_grades_on_student_id"
+  create_table "courses_users", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "project_name"
-    t.bigint "course_id"
+    t.integer "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_projects_on_course_id"
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "team_name"
-    t.bigint "student_id"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["student_id"], name: "index_teams_on_student_id"
+  end
+
+  create_table "teams_users", id: false, force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "fname"
-    t.string "lname"
+    t.string "name"
     t.string "email"
+    t.boolean "admin"
+    t.string "user_role"
+    t.string "string"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-    t.boolean "admin"
-    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "courses", "users", column: "instructor_id"
-  add_foreign_key "enrollments", "courses", column: "course_id_id"
-  add_foreign_key "enrollments", "users", column: "user_id_id"
-  add_foreign_key "feedbacks", "projects"
-  add_foreign_key "feedbacks", "users", column: "receiver_id"
-  add_foreign_key "feedbacks", "users", column: "submitter_id"
-  add_foreign_key "grades", "projects"
-  add_foreign_key "grades", "users", column: "student_id"
   add_foreign_key "projects", "courses"
-  add_foreign_key "teams", "users", column: "student_id"
 end

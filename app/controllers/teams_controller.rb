@@ -7,18 +7,19 @@ class TeamsController < ApplicationController
     @team=Team.new
   end
   def create
+    #byebug
     @team = Team.new(team_params)
-    if @team.save
+    if @team.save(validate: false)
       flash[:success]="Team created!"
       redirect_to teams_url
     else
       render 'new'
     end
   end
-
+ 
   def show
     @team=Team.find(params[:id])
-  end 
+  end
 
   def edit
     @team=Team.find(params[:id])
@@ -28,7 +29,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash[:success]="Your profile has been updated."
+      flash[:success]="The has been updated."
       redirect_to @team
     else
       render 'edit'
@@ -45,6 +46,6 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :description)
+    params.require(:team).permit(:name, user_ids:[])
   end
 end
