@@ -15,8 +15,10 @@ ActiveRecord::Schema.define(version: 2021_12_04_041534) do
   create_table "courses", force: :cascade do |t|
     t.string "course_no"
     t.string "semester"
+    t.integer "instructor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["instructor_id"], name: "index_courses_on_instructor_id"
   end
 
   create_table "courses_users", id: false, force: :cascade do |t|
@@ -25,21 +27,35 @@ ActiveRecord::Schema.define(version: 2021_12_04_041534) do
   end
 
   create_table "enrollments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
+    t.integer "submitter_id"
+    t.integer "receiver_id"
+    t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_feedbacks_on_project_id"
+    t.index ["receiver_id"], name: "index_feedbacks_on_receiver_id"
+    t.index ["submitter_id"], name: "index_feedbacks_on_submitter_id"
   end
 
   create_table "grades", force: :cascade do |t|
     t.integer "score"
+    t.integer "student_id"
+    t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_grades_on_project_id"
+    t.index ["student_id"], name: "index_grades_on_student_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -52,8 +68,10 @@ ActiveRecord::Schema.define(version: 2021_12_04_041534) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
+    t.integer "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_teams_on_student_id"
   end
 
   create_table "teams_users", id: false, force: :cascade do |t|
@@ -72,5 +90,14 @@ ActiveRecord::Schema.define(version: 2021_12_04_041534) do
     t.string "password_digest"
   end
 
+  add_foreign_key "courses", "users", column: "instructor_id"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
+  add_foreign_key "feedbacks", "projects"
+  add_foreign_key "feedbacks", "users", column: "receiver_id"
+  add_foreign_key "feedbacks", "users", column: "submitter_id"
+  add_foreign_key "grades", "projects"
+  add_foreign_key "grades", "users", column: "student_id"
   add_foreign_key "projects", "courses"
+  add_foreign_key "teams", "users", column: "student_id"
 end

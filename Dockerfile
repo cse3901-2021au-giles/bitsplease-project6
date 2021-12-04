@@ -11,6 +11,7 @@ RUN apt-get update &&  apt-get install -y \
      make \
      nodejs \
      yarn \
+     sqlite3 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* 
 # Configure the main working directory. This is the base
