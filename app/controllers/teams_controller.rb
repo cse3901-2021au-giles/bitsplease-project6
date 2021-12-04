@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash[:success]="Your profile has been updated."
+      flash[:success]="The has been updated."
       redirect_to @team
     else
       render 'edit'
