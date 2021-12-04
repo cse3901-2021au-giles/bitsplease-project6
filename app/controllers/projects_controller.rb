@@ -3,12 +3,13 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.paginate(page: params[:page])
+    
   end
 
   # GET /projects/1 or /projects/1.json
   def show
-
+    @project=Project.find(params[:id])
   end
 
   # GET /projects/new
@@ -24,13 +25,11 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    byebug
+    #byebug
     @project = Project.new(project_params)
-    @project.course_id=params[:parent_id]
-    #@course =Course.find(@project.parent_id)
     if @project.save(validate: false)
-      flash[:success]="Course created!"
-      redirect_to @course
+      flash[:success]="Project created!"
+      redirect_to @project
     else
       render 'new'
     end
@@ -67,6 +66,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:project_name, :parent_id)
+      params.require(:project).permit(:project_name, :course_id)
     end
 end

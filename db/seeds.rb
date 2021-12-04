@@ -16,7 +16,7 @@ User.create!(name: "Test Student",
              password:"password",
              password_confirmation: "password",
              admin: false,
-             user_role: "student")
+             user_role: "Student")
 
 # Generate 50 more students.
 50.times do |n|
@@ -29,7 +29,7 @@ User.create!(name: "Test Student",
                password: password,
                password_confirmation: password,
                admin: admin,
-               user_role: "student")
+               user_role: "Student")
   @user=User.find_by(email: email)
 end
 # Create 1 TA.
