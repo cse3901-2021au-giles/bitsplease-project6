@@ -8,11 +8,14 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
+
   end
 
   # GET /projects/new
   def new
     @project = Project.new
+    @project.project_name='test project'
+    @project.course_id=2
   end
 
   # GET /projects/1/edit
@@ -21,18 +24,18 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
+    byebug
     @project = Project.new(project_params)
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: "Project was successfully created." }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    @project.course_id=params[:parent_id]
+    #@course =Course.find(@project.parent_id)
+    if @project.save(validate: false)
+      flash[:success]="Course created!"
+      redirect_to @course
+    else
+      render 'new'
     end
   end
+
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
@@ -64,6 +67,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {})
+      params.require(:project).permit(:project_name, :parent_id)
     end
 end

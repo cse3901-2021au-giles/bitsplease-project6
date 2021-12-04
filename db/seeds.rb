@@ -1,8 +1,6 @@
 #Create a course
 Course.create!(course_no: "CSE-3901",
 semester: "Fall")
-# Create an test team
-Team.create!(name: "Test Team")
 
 # Create an admin user
 User.create!(name: "Jesse Zheng",

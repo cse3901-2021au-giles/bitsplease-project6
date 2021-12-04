@@ -1,7 +1,7 @@
 <% provide(:title, @team.name) %>
 <%= @team.name %>
 <br>
-<span class="num-association"><%= @team.users.length %> Users</span>
+<span class="num-association"><%= pluralize(@team.users.length, "student") %></span>
 
 <br>
 <div class='association-listing'>

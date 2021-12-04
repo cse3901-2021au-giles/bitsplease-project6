@@ -6,9 +6,9 @@
 
 
  
-    <%= f.label "Team users" %>
+    <%= f.label "Students" %>
     <div class="multi-selection">
-    <%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b| %>
+    <%= f.collection_check_boxes :user_ids, User.where(user_role: "student").order("name"), :id, :name do |b| %>
       <div class="collection-check-box">
         <table><tr>
         <td><%= b.check_box %></td>
