@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
     has_and_belongs_to_many :users
-    has_many :projects 
+    has_many :projects, :dependent => :destroy
     
     def instructors
         users.where(user_role: "Instructor")
