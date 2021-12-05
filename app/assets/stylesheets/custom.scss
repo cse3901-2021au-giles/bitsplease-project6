@@ -225,7 +225,7 @@ div.parent-info{
 
 
 
-.association-listing{
+.association-listing, .rate-student-list{
   margin-left: 10px;
   width: 100%;
 }
@@ -249,4 +249,16 @@ select {
 
 .contact-list ul{
   list-style-type: none;
+}
+.rate-student-list table tr td{
+  padding: 5px 0;
+}
+.rate-student-list table tr :first-child{
+  width: 150px;
+}
+
+.rate-student-list table tr :nth-child(2) :first-child{
+  white-space: nowrap;
+  font-weight: normal;
+  padding-top: 5px;
 }

@@ -1,8 +1,13 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.paginate(page: params[:page])
+    if current_user.admin?  
+      @teams=Team.all.order("name");
+    else
+      @teams = Team.all.reject{|p| p.users.exclude? current_user}
+    end
   end
+
   def new
     @team=Team.new
   end

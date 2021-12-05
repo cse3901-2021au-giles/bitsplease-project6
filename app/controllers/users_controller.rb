@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     
-    unless @user == current_user
+    unless @user == current_user or @user.user_role.eql? "Student"
       flash[:danger]="You request is denied."
       redirect_to(root_url) 
     end
