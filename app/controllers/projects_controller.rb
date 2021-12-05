@@ -15,8 +15,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @project.project_name='test project'
-    @project.course_id=2
   end
 
   # GET /projects/1/edit
@@ -27,7 +25,7 @@ class ProjectsController < ApplicationController
   def create
     #byebug
     @project = Project.new(project_params)
-    if @project.save(validate: false)
+    if @project.valid? &&@project.save(validate: false)
       flash[:success]="Project created!"
       redirect_to @project
     else
