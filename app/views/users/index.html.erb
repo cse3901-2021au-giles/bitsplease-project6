@@ -1,14 +1,14 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+<ul class="users">
+    <%= render @users %>
+</ul>
+<%= will_paginate %>
+
+<hr>
 <% if current_user.admin? %>
   <div class="new-button">
   <%= link_to "Create a new user",  controller: "users", action: "new"  %> 
   </div>
 <% end %>
-
-<%= will_paginate %>
-<ul class="users">
-    <%= render @users %>
-</ul>
-<%= will_paginate %>

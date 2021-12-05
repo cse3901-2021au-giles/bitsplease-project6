@@ -1,15 +1,53 @@
 <% provide(:title, @course.course_no) %>
 <%= @course.course_no %> (<%= @course.semester %>)
-<br>
-<span class="num-association"><%= @course.users.length %> Instructor and teaching assistants</span>
+
+
+
+<div class='association-listing'>
+
+<span><%= pluralize(@course.instructors.length, "Instructors") %> </span>
+
 
 <br>
-<div class='association-listing'>
-<% @course.users.each do |user| %>
-    <span><%= user.name %></span>
+<% @course.instructors.each do |user| %>
+    <span class="section-item"><%= user.name %></span>
+<% end %>
+
+
+<br>
+
+<span><%= pluralize(@course.tas.length, "Teaching Assistants") %> </span>
+
+
+<br>
+<% @course.tas.each do |user| %>
+    <span class="section-item"><%= user.name %></span>
+<% end %>
+
+
+<br>
+
+<span><%= pluralize(@course.students.length, "Students") %> </span>
+<br>
+
+<% @course.students.each do |user| %>
+    <span class="section-item"><%= user.name %></span>
 <% end %>
 </div>
+<br>
+
+<h4>Projects</h4>
+    <div class='association-listing'>
+    <span><%= pluralize(@course.projects.length, "project") %> </span>
+    <br>
+
+    <% @course.projects.each do |p| %>
+        <span class="section-item"><%= p.project_name %></span>
+    <% end %>
+</div>
+
+
 <hr>
 <%= link_to 'Modify Course', edit_course_path(@course) %> |
-<%= link_to 'Course summary', courses_path %>
+<%= link_to 'Course Summary', courses_path %>
 

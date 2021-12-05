@@ -1,6 +1,10 @@
-<h1>Editing Project</h1>
+<% provide(:title, "Modify project") %>
+<% provide(:button_text, 'Save changes') %>
+
+<h1>Modify Project</h1>
 
 <%= render 'form', project: @project %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<br>
+<%= link_to 'Back', @project %> |
+<%= link_to 'Project Summary', projects_path %>

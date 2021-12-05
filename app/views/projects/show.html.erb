@@ -1,4 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @project.project_name) %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+Project: <%= @project.project_name %>
+
+<div class="parent-info">
+    Course: <%= @project.course_no %>
+</div>
+
+
+<br>
+
+<div class='association-listing'>
+    <span><%= pluralize(@project.teams.length, "teams") %> </span>
+
+    <br>
+
+    <% @project.teams.each do |t| %>
+        <span class="section-item"><%= t.name %></span>
+    <% end %>
+
+</div>
+
+<hr>
+<%= link_to 'Modify Project', edit_project_path(@project) %> |
+<%= link_to 'Project Summary', projects_path %>
+

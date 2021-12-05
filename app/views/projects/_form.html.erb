@@ -1,17 +1,11 @@
-<%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-      <ul>
-        <% project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+<%= form_with(model: @project, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @project %>  
+  <%= f.label :"Project name" %>
+  <%= f.text_field :project_name, class: 'form-control' %>
+  <%= f.label :Course %>
+  <div class="select">
+    <%= f.collection_select(:course_id, Course.all, :id, :course_no) %>
   </div>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
