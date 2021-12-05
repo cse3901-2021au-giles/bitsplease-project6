@@ -13,6 +13,14 @@ User.create!(name: "Jesse Zheng",
              admin: true,
              user_role:"Super user")
 
+# Create an actual email test user
+User.create!(name: "Sooyoung Jeon",
+  email: "jeonso3412@gmail.com",
+  password:"password",
+  password_confirmation: "password",
+  admin: true,
+  user_role:"Super user")
+
 # Create a main sample user.
 User.create!(name: "Test User",
              email: "test_user@yahoo.com",
