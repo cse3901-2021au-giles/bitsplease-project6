@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_04_022735) do
+ActiveRecord::Schema.define(version: 2021_12_05_192239) do
 
   create_table "courses", force: :cascade do |t|
     t.string "course_no"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 2021_12_04_022735) do
   create_table "courses_users", id: false, force: :cascade do |t|
     t.integer "course_id", null: false
     t.integer "user_id", null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.float "score"
+    t.text "remarks"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "student_id", null: false
+    t.integer "reviewer_id", null: false
+    t.integer "team_id", null: false
+    t.index ["reviewer_id"], name: "index_grades_on_reviewer_id"
+    t.index ["student_id"], name: "index_grades_on_student_id"
+    t.index ["team_id"], name: "index_grades_on_team_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -56,6 +69,9 @@ ActiveRecord::Schema.define(version: 2021_12_04_022735) do
     t.string "password_digest"
   end
 
+  add_foreign_key "grades", "teams"
+  add_foreign_key "grades", "users", column: "reviewer_id"
+  add_foreign_key "grades", "users", column: "student_id"
   add_foreign_key "projects", "courses"
   add_foreign_key "teams", "projects"
 end

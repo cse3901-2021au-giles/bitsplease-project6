@@ -1,17 +1,14 @@
-<%= form_with(model: grade, local: true) do |form| %>
-  <% if grade.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+<%= form_with(model: @grade, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @grade %>  
 
-      <ul>
-        <% grade.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.label :"Score" %>
+  <%= f.text_field :score, class: 'form-control' %>
+  <%= f.label :"Remarks" %>
+  <%= f.text_area :remarks, class: 'form-control' %>
+  <%= f.hidden_field :student_id %>
+  <%= f.hidden_field :team_id %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
+

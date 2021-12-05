@@ -225,7 +225,7 @@ div.parent-info{
 
 
 
-.association-listing, .rate-student-list{
+.association-listing, .rate-student-list, .score-details{
   margin-left: 10px;
   width: 100%;
 }
@@ -265,4 +265,12 @@ select {
   white-space: nowrap;
   font-weight: normal;
   padding-top: 5px;
+}
+.score-details .remarks{
+  margin-left: 10px;
+  font-size: small;
+  color: gray;
+}
+span.separator{
+margin-left: 20px;  
 }

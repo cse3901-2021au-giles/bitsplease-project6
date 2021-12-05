@@ -20,7 +20,7 @@
         <div class="rate-student-list">
             <table><tr>
             <td><%= user.name %></td>
-            <td><%= link_to "Rate teammate", edit_user_path(user) %></td>
+            <td><%= link_to "Grade", new_grade_path(team_id: @team.id, user_id: user.id) %></td>
             </tr></table>
         </div>
     <% end %>

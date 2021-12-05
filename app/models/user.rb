@@ -1,6 +1,9 @@
 class User < ApplicationRecord
     before_save { email.downcase! }
     has_and_belongs_to_many :teams
+    has_many :student_grades, class_name: 'Grade', foreign_key: 'student_id'
+    has_many :reviewer_grades, class_name: 'Grade', foreign_key: 'reviewer_id'
+
 
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

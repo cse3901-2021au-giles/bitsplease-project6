@@ -1,0 +1,11 @@
+<li>
+
+  <p><%= link_to grade.student_name, grade %> </p>
+  <p><%= grade.course_no %> | <%= grade.project_name %> | <%= grade.team_name %></p>
+  <p> 
+  score: <%= link_to grade.score, grade %> 
+  <span class="separator">
+  <%= link_to "delete this score", grade, method: :delete,  data: { confirm: "Are you sure?" } %>
+  </span>
+  </p>
+</li>

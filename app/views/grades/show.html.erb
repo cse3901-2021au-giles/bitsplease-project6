@@ -1,4 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Grade") %>
+<h4><%= @grade.student_name %></h4>
 
-<%= link_to 'Edit', edit_grade_path(@grade) %> |
-<%= link_to 'Back', grades_path %>
+<div class="score-details">
+<p>Socre: <%= @grade.score %> (<%= @grade.grade_date %>)</p>
+
+<p>
+<%= @grade.course_no %> | <%= @grade.project_name %> | <%= @grade.team_name %>
+</p>
+<p class="remarks">
+<%= @grade.remarks %> 
+</p>
+</div>
+<hr>
+<% if current_user.id==@grade.reviewer_id %>
+<%= link_to 'Modify', edit_grade_path(@grade) %> |
+<%= link_to "Delete", @grade, method: :delete,  data: { confirm: "Are you sure?" } %> |
+<% end %>
+<%= link_to 'Grade Summary', grades_path %>

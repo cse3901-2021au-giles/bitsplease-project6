@@ -13,6 +13,9 @@ class GradesController < ApplicationController
   # GET /grades/new
   def new
     @grade = Grade.new
+    @grade.team_id = request.query_parameters["team_id"]
+    @grade.student_id = request.query_parameters["user_id"]
+
   end
 
   # GET /grades/1/edit
@@ -22,38 +25,33 @@ class GradesController < ApplicationController
   # POST /grades or /grades.json
   def create
     @grade = Grade.new(grade_params)
+    @grade.reviewer_id=current_user.id
 
-    respond_to do |format|
-      if @grade.save
-        format.html { redirect_to @grade, notice: "Grade was successfully created." }
-        format.json { render :show, status: :created, location: @grade }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
-      end
+    if @grade.save(validate: false)
+      flash[:success]="Grade saved!"
+      redirect_to @grade
+    else
+      render 'new'
     end
+
   end
 
   # PATCH/PUT /grades/1 or /grades/1.json
   def update
-    respond_to do |format|
-      if @grade.update(grade_params)
-        format.html { redirect_to @grade, notice: "Grade was successfully updated." }
-        format.json { render :show, status: :ok, location: @grade }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
-      end
+    @grade = Grade.find(params[:id])
+    if @grade.update(grade_params)
+      flash[:success]="The grade has been updated."
+      redirect_to @grade
+    else
+      render 'edit'
     end
   end
 
   # DELETE /grades/1 or /grades/1.json
   def destroy
-    @grade.destroy
-    respond_to do |format|
-      format.html { redirect_to grades_url, notice: "Grade was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    Grade.find(params[:id]).destroy
+    flash[:success] = "The grade has been deleted"
+    redirect_to grades_url  
   end
 
   private
@@ -64,6 +62,6 @@ class GradesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def grade_params
-      params.fetch(:grade, {})
+      params.require(:grade).permit(:remarks,:score, :student_id,:team_id)
     end
 end
