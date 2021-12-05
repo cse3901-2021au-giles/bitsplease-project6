@@ -9,9 +9,9 @@ class TeamsController < ApplicationController
   def create
     #byebug
     @team = Team.new(team_params)
-    if @team.save(validate: false)
-      flash[:success]="Team created!"
-      redirect_to teams_url
+    if @team.valid? && @team.save(validate: false)
+        flash[:success]="Team created!"
+        redirect_to teams_url
     else
       render 'new'
     end

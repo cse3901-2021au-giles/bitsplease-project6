@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
+
     @courses = Course.all.paginate(page: params[:page])
   end
 
@@ -18,7 +19,7 @@ class CoursesController < ApplicationController
    
   def create
     @course = Course.new(course_params)
-    if @course.save(validate: false)
+    if @course.valid && @course.save(validate: false)
       flash[:success]="Course created!"
       redirect_to courses_url
     else

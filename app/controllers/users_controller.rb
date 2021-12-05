@@ -7,8 +7,10 @@ class UsersController < ApplicationController
   
   end
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where.not(user_role: "Super user").order("name asc").paginate :page=> params[:page], per_page:5
+
   end
+
   def show
     @user=User.find(params[:id])
     @roles=["Student","Teaching Assistant"]
