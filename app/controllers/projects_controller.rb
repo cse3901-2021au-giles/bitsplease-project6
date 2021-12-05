@@ -36,24 +36,20 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: "Project was successfully updated." }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      flash[:success]="The project has been updated."
+      redirect_to @project
+    else
+      render 'edit'
     end
   end
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    Project.find(params[:id]).destroy
+    flash[:success] = "The project has been deleted"
+    redirect_to projects_url  
   end
 
   private

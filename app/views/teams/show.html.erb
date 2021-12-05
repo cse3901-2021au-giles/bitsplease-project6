@@ -7,17 +7,30 @@
 
 <br>
 
-<div class='association-listing'>
-    <span><%= pluralize(@team.users.length, "student") %></span>
-
-    <br>
-
+<% if current_user.admin? %>
+    <div class='association-listing'>
+        <span><%= pluralize(@team.users.length, "student") %></span>
+        <br>
+        <% @team.users.each do |user| %>
+            <span class="section-item"><%= user.name %></span>
+        <% end %>
+    </div>
+<% else %>
     <% @team.users.each do |user| %>
-        <span class="section-item"><%= user.name %></span>
+        <div class="rate-student-list">
+            <table><tr>
+            <td><%= user.name %></td>
+            <td><%= link_to "Rate teammate", edit_user_path(user) %></td>
+            </tr></table>
+        </div>
     <% end %>
-</div>
+<% end %>
+
+
 <br>
 
 <hr>
+<% if current_user.admin? %>
 <%= link_to 'Modify Team', edit_team_path(@team) %> |
-<%= link_to 'Team summary', teams_path %>
+<% end %>
+<%= link_to 'Team Summary', teams_path %>

@@ -1,8 +1,13 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.paginate(page: params[:page])
+    if current_user.admin?  
+      @teams=Team.all.order("name");
+    else
+      @teams = Team.all.reject{|p| p.users.exclude? current_user}
+    end
   end
+
   def new
     @team=Team.new
   end
@@ -10,8 +15,8 @@ class TeamsController < ApplicationController
     #byebug
     @team = Team.new(team_params)
     if @team.valid? && @team.save(validate: false)
-        flash[:success]="Team created!"
-        redirect_to teams_url
+        flash[:success]="Team created and you can add students now"
+        redirect_to edit_team_path(@team)
     else
       render 'new'
     end
