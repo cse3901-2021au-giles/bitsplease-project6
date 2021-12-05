@@ -8,7 +8,12 @@ class Team < ApplicationRecord
     end
 
     def course_users
-        User.where(user_role: "Student") unless project_id.nil?
+        #User.where(user_role: "Student") unless project_id.nil?
+        byebug
+        @project=Project.find_by(id: project_id)
+        @course=Course.find_by(id: @project.course_id)
+        @users=@course.users.where(user_role: "Student");
+
     end
 
     def edit_team
