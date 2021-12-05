@@ -3,7 +3,7 @@ class Course < ApplicationRecord
     has_many :projects 
     
     def instructors
-        users.where(user_role: "instructor")
+        users.where(user_role: "Instructor")
 
     end  
     def students
