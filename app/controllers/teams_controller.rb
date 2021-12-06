@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   def index
     @teams = if current_user && current_user.admin?
                Team.all.order('name')
@@ -8,7 +9,8 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @team = Team.new
+    @team=Team.new
+    @edit_team=false
   end
 
   def create
@@ -27,7 +29,8 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    @team = Team.find(params[:id])
+    @team=Team.find(params[:id])
+    @edit_team=true
   end
 
   def update

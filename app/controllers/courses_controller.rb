@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   # GET /courses or /courses.json
   def index
     @courses = Course.all.paginate(page: params[:page])
@@ -16,8 +18,11 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-    if @course.save(validate: false)
-      flash[:success] = 'Course created!'
+    if(@course.course_no.empty?)
+      @course.valid?
+      render 'new'
+    elsif @course.save(validate: false)
+      flash[:success]="Course created!"
       redirect_to courses_url
     else
       render 'new'

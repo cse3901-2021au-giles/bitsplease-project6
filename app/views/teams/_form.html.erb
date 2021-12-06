@@ -9,7 +9,7 @@
     <%= f.collection_select(:project_id, Project.all, :id, :project_name) %>
   </div>  
 
-  <% if @team.edit_team %>
+  <% if @edit_team %>
     <%= f.label "Students" %>
     <div class="multi-selection">
     <%= f.collection_check_boxes :user_ids, @team.course_users, :id, :name do |b| %>

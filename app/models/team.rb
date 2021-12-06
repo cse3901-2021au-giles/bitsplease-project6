@@ -16,10 +16,5 @@ class Team < ApplicationRecord
         @users=@course.users.where(user_role: "Student");
 
     end
-
-    def edit_team
-        true unless project_id.nil?
-    end
-
 end
 

@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json

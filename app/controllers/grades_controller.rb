@@ -1,5 +1,7 @@
 class GradesController < ApplicationController
-  before_action :set_grade, only: %i[show edit update destroy]
+
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :set_grade, only: %i[ show edit update destroy ]
 
   # GET /grades or /grades.json
   def index
@@ -69,8 +71,8 @@ class GradesController < ApplicationController
       @course = Course.find_by(id: course_id)
       @grades = Grade.all.reject { |g| g.course_id != course_id }
     else
-      @grade_title = 'All grades'
-      @grades = Grade.all.reject { |g| my_courses.exclude? g.course }
+      @grade_title="All grades"
+      @grades = Grade.all.reject{|g| g.reviewer_id != current_user.id}
     end
   end
 
