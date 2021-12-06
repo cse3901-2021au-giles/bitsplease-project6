@@ -24,8 +24,8 @@
 
           <li><%= link_to "Teams", teams_path %></li>
           <% if current_user.admin? %>
+          <li><%= link_to "Grades", grades_path(admin_id: current_user.id) %></li>
           <li><%= link_to "Users", users_path %></li>
-          <li><%= link_to "Grades", grades_path %></li>
           <% else %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -5,23 +5,29 @@ class GradesController < ApplicationController
   def index
     course_id=request.query_parameters["course_id"]
     course_id=course_id.to_i unless course_id.nil?
-    course_id=session[:course_id] if course_id.nil?
     
     project_id=request.query_parameters["project_id"]
     project_id=project_id.to_i unless project_id.nil?
-    project_id=session[:project_id] if project_id.nil?
     
     team_id=request.query_parameters["team_id"];
     team_id=team_id.to_i unless team_id.nil?
-    team_id=session[:team_id] if team_id.nil?
 
     student_id=request.query_parameters["student_id"];
     student_id=student_id.to_i unless student_id.nil?
-    student_id=session[:student_id] if student_id.nil?
 
     reviewer_id=request.query_parameters["reviewer_id"]
     reviewer_id=reviewer_id.to_i unless reviewer_id.nil?
-    reviewer_id=session[:reviewer_id] if reviewer_id.nil?
+    
+    admin_id=request.query_parameters["admin_id"]
+    admin_id=admin_id.to_i unless admin_id.nil?
+
+    if admin_id.nil? and course_id.nil? and project_id.nil? and team_id.nil? and student_id.nil? and reviewer_id.nil?
+      course_id=session[:course_id] if course_id.nil?
+      project_id=session[:project_id] if project_id.nil?
+      team_id=session[:team_id] if team_id.nil?
+      student_id=session[:student_id] if student_id.nil?
+      reviewer_id=session[:reviewer_id] if reviewer_id.nil?
+    end
 
     if not student_id.nil? 
       session[:student_id]=student_id
