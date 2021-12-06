@@ -37,6 +37,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.password="password"
+    @user.password_confirmation="password"
     if @user.update(user_params)
       flash[:success]="Your profile has been updated."
       redirect_to @user
@@ -54,8 +56,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, 
-                                  :password_confirmation, :user_role, team_ids:[])
+      params.require(:user).permit(:name, :email, :user_role, team_ids:[])
 
   end
 

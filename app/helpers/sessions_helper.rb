@@ -20,4 +20,8 @@ module SessionsHelper
         @current_user = nil
     end
 
+    def my_courses
+        Course.all.reject{|c| c.users.exclude? current_user}
+    end
+
 end

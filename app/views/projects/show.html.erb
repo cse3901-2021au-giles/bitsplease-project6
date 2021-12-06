@@ -24,3 +24,6 @@ Project: <%= @project.project_name %>
 <%= link_to 'Modify Project', edit_project_path(@project) %> |
 <%= link_to 'Project Summary', projects_path %>
 
+<% if current_user.admin? %>
+| <%= link_to "Student Grades", grades_path(project_id: @project.id) %>
+<% end %>

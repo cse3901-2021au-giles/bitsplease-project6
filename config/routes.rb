@@ -15,9 +15,8 @@ Rails.application.routes.draw do
   resources :users
   resources :teams
   resources :projects
-  resources :courses do
-    resources :projects
-  end
+  resources :courses 
+  resources :grades
   resources :feedbacks
 
 end

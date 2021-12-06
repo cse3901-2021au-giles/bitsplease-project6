@@ -1,6 +1,11 @@
-<h1>Editing Grade</h1>
+<% provide(:title, "Grade a student") %>
+<% provide(:button_text, 'Save grade') %>
 
-<%= render 'form', grade: @grade %>
+<h1>Grade Student</h1>
 
-<%= link_to 'Show', @grade %> |
-<%= link_to 'Back', grades_path %>
+<%= render 'form', project: @grade %>
+
+<br>
+<%= link_to 'Back', @grade %> |
+<%= link_to 'Grade Summary', grades_path %>
+

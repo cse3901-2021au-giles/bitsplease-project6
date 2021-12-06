@@ -3,10 +3,47 @@
     <aside class="col-md-4">
         <section class="top">
             <h1>
-            <%= @user.name %> (<%= @user.user_role %>)
-            <%= gravatar_for @user %>
+            <%= @user.name %>
             </h1>
+            <%= gravatar_for @user %>
         </section>
+        <br>
         
+        <p><%= @user.user_role %><p/>
+        <p>Email: <%= @user.email %></p>
+        <% if current_user.admin? and @user.user_role.eql?("Student") %>
+        <%= link_to 'Modify User Info', edit_user_path(@user) %>
+        <% end %>
+        <% if current_user.admin? %>
+        | <%= link_to 'User Summary', users_path %>
+        <% end %>
     </aside>
+
+    <% unless @user.admin? %> 
+    <p> Student activities</p> 
+    
+    <div class='association-listing'>
+        
+        <p><%= pluralize(@user.courses.length, "courses") %> </p>
+        <% @user.courses.each do |t| %>
+            <span class="section-item"><%= t.course_no %></span>
+        <% end %>
+    </div>
+
+    <div class='association-listing'>
+        <p><%= pluralize(@user.teams.length, "teams") %> </p>
+        <% @user.teams.each do |t| %>
+            <span class="section-item"><%= t.name %></span>
+        <% end %>
+    </div>
+    <br>
+    <div class='association-listing'>
+        <p>Received <%= pluralize(@user.student_grades.length, "grades") %> </p>
+    </div>
+
+    <div class='association-listing'>
+        <p>Posted <%= pluralize(@user.reviewer_grades.length, "grades") %> </p>
+    </div>
+    
+<% end %>
 </div>

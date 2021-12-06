@@ -1,25 +1,22 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Grades') %>
+<h3><%= @grade_title %></h3>
 
-<h1>Grades</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<ul class="users">
+  
+<% if @by_course %>
+<p class="grade"><%= @course.course_no %></p>
+<% end %>
 
-  <tbody>
-    <% @grades.each do |grade| %>
-      <tr>
-        <td><%= link_to 'Show', grade %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-        <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if @by_project %>
+<p><%= @course.course_no %> | <%= @project.project_name %></p>
+<% end %>
 
-<br>
 
-<%= link_to 'New Grade', new_grade_path %>
+<% if @by_team %>
+<p><%= @course.course_no %> | <%= @project.project_name %> | <%= @team.name %></p>
+<% end %>
+
+    <%= render @grades %>
+</ul>
+

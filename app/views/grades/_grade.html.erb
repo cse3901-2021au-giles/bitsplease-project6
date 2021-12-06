@@ -1,0 +1,34 @@
+<li>
+
+  <p><%= link_to grade.student_name, grade %> </p>
+
+
+
+
+  <p>
+  <% if not @by_course and not @by_project and not @by_team %>
+  <%= grade.course_no %> | <%= grade.project_name %> | <%= grade.team_name %>
+
+  <% elsif not @by_project and not @by_team %>
+  <%= grade.project_name %> | <%= grade.team_name %>
+
+  <% elsif not @by_team %>
+  <%= grade.team_name %>
+  <% end %>
+  </p>
+  
+  <p> 
+  
+  score: <%= link_to grade.score, grade_path(id: grade.id) %>
+  <% if current_user.admin? or grade.reviewer_id==current_user.id %>
+  <span class="separator">
+  <%= link_to "delete this score", grade, method: :delete,  data: { confirm: "Are you sure?" } %>
+  </span>
+  <br>
+  
+  <% end %>
+  <% if current_user.admin? %>
+  graded by: <%= grade.reviewer_name %>
+  <% end %>
+  </p>
+</li>
