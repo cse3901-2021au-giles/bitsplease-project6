@@ -200,8 +200,10 @@ input {
   }
 }
 div.new-button{
+  margin-top: 10px;
   margin-left: 35px;
   font-size: large;
+  font-weight: bold;
 }
 
 div.multi-selection{
@@ -280,4 +282,7 @@ margin-left: 20px;
 }
 .student-activity{
   text-align: center;
+}
+.list-action{
+  margin-left: 20px;
 }
