@@ -20,4 +20,14 @@ module SessionsHelper
         @current_user = nil
     end
 
+    def my_courses
+        Course.all.reject{|c| c.users.exclude? current_user}
+    end
+
+    def grade_course_id
+        if session[:grade_course_id]
+            session[:user_id]
+        end
+    end
+
 end

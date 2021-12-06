@@ -41,13 +41,16 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
   }
   
-  h2 {
+  h2{
     font-size: 1.2em;
     letter-spacing: -1px;
     margin-bottom: 30px;
     text-align: center;
     font-weight: normal;
     color: $gray-light;
+  }
+  h3{
+    text-align: center;
   }
   
   p {
@@ -266,6 +269,7 @@ select {
   font-weight: normal;
   padding-top: 5px;
 }
+
 .score-details .remarks{
   margin-left: 10px;
   font-size: small;

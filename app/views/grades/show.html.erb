@@ -1,18 +1,22 @@
 <% provide(:title, "Grade") %>
+
 <h4><%= @grade.student_name %></h4>
 
 <div class="score-details">
-<p>Socre: <%= @grade.score %> (<%= @grade.grade_date %>)</p>
-
 <p>
 <%= @grade.course_no %> | <%= @grade.project_name %> | <%= @grade.team_name %>
 </p>
+<p>Socre: <%= @grade.score %> (<%= @grade.grade_date %>)</p>
+<% if current_user.admin?%>
+graded by: <%= @grade.reviewer_name%>
+<% end %>
+
 <p class="remarks">
 <%= @grade.remarks %> 
 </p>
 </div>
 <hr>
-<% if current_user.id==@grade.reviewer_id %>
+<% if current_user.admin? or @grade.reviewer_id==current_user.id %>
 <%= link_to 'Modify', edit_grade_path(@grade) %> |
 <%= link_to "Delete", @grade, method: :delete,  data: { confirm: "Are you sure?" } %> |
 <% end %>

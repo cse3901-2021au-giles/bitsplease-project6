@@ -1,12 +1,22 @@
-<% provide(:title, 'Grades I submitted') %>
-<h1>Grades I submitted</h1>
+<% provide(:title, 'Grades') %>
+<h3><%= @grade_title %></h3>
 
 
 <ul class="users">
+  
+<% if @by_course %>
+<p class="grade"><%= @course.course_no %></p>
+<% end %>
+
+<% if @by_project %>
+<p><%= @course.course_no %> | <%= @project.project_name %></p>
+<% end %>
+
+
+<% if @by_team %>
+<p><%= @course.course_no %> | <%= @project.project_name %> | <%= @team.name %></p>
+<% end %>
+
     <%= render @grades %>
 </ul>
-<% if current_user.admin? %>
-  <div class="new-button">
-  <%= link_to "Create a new grade",  controller: "grades", action: "new"  %> 
-  </div>
-<% end %>
+
