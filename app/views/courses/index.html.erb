@@ -1,8 +1,7 @@
 <% provide(:title, 'All courses') %>
 <h1>All courses</h1>
 
-<%= will_paginate %>
-<ul class="users">
+<ul class="summary-list">
     <%= render @courses %>
 </ul>
 <% if current_user.admin? %>

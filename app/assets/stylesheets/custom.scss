@@ -190,7 +190,7 @@ input {
 }
 /* Users index */
 
-.users {
+.summary-list {
   list-style: none;
   margin: 0;
   li {
@@ -258,6 +258,9 @@ select {
 
 .jumbotron {
   background-color: #fff;
+  h1{
+    font-size: 3em;
+  }
 }
 .rate-student-list table tr td{
   padding: 5px 0;
@@ -283,6 +286,10 @@ margin-left: 20px;
 .student-activity{
   text-align: center;
 }
-.list-action{
-  margin-left: 20px;
+.home{
+  margin: auto;
+  padding-top: 20px;
+  width: 50%;
+  max-width: 500px; 
+  align-content: left;
 }
