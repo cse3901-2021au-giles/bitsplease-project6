@@ -15,7 +15,9 @@
         <div class="rate-student-list">
             <table><tr>
             <td><%= user.name %></td>
+            <% if @team_in_my_courses %>
             <td><%= link_to "Grade", new_grade_path(team_id: @team.id, user_id: user.id) %></td>
+            <% end %>
             </tr></table>
         </div>
         <% end %>
@@ -24,10 +26,10 @@
 <br>
 
 <hr>
-<% if current_user.admin? %>
+<% if @team_in_my_courses %>
 <%= link_to 'Modify Team', edit_team_path(@team) %> |
 <% end %>
 <%= link_to 'Team Summary', teams_path %>
-<% if current_user.admin? %>
+<% if @team_in_my_courses %>
 | <%= link_to "Student Grades", grades_path(team_id: @team.id) %>
 <% end %>

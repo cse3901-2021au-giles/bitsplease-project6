@@ -26,6 +26,8 @@ class TeamsController < ApplicationController
  
   def show
     @team=Team.find(params[:id])
+    @team_in_my_courses = true unless @team.course_admins.exclude?(current_user)
+ 
   end
 
   def edit
