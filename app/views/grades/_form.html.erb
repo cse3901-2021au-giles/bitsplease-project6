@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: @grade %>  
 
   <%= f.label :"Score" %>
-  <%= f.text_field :score, class: 'form-control' %>
+  <%= f.number_field  :score, class: 'form-control' %>
   <%= f.label :"Remarks" %>
   <%= f.text_area :remarks, class: 'form-control' %>
   <%= f.hidden_field :student_id %>

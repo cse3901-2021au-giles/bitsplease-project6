@@ -91,7 +91,7 @@ class GradesController < ApplicationController
     @grade.reviewer_id=current_user.id
 
 
-    if @grade.save(validate: false)
+    if @grade.save()
       flash[:success]="Grade saved!"
       @team=Team.find(@grade.team_id)
       redirect_to @team

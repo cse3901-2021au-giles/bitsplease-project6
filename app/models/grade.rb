@@ -3,6 +3,11 @@ class Grade < ApplicationRecord
     belongs_to :reviewer, class_name: 'User'
     belongs_to :team, class_name: "Team"
 
+    validates :score, presence: true
+    validates :remarks, presence: true, length: { maximum: 500 }
+
+
+
     def student_name
         @s=User.find_by(id: student_id)
         @s.name unless @s.nil?
