@@ -3,25 +3,25 @@ class PasswordController < ApplicationController
   end
 
   def reset
-    @user = User.find_by_email(request.params[:email])
   end
 
   def mail_reset
     email_to_reset = params[:email]
     url = reset_password_url
     PasswordMailer.reset_password(email_to_reset, url).deliver_now
-    redirect_to login_url
+    flash[:success] = "Password reset email has sent to your email. Please check your inbox and spam"
+    redirect_to login_path
   end
 
   def reset_password
-    current_password = params[:user][:current_password]
+    @user = User.find_by_email(params[:email])
 
     if @user
-      new_password = params[:new_password]
+      password = params[:password]
       confirm_password = params[:confirm_password]
-      if @user.update_attribute(password: new_password)
+      if @user.update_attribute(:password, password)
         flash[:success] = "The password has been updated"
-        redirect_to login_url
+        redirect_to login_path
       else
         render 'reset'
       end
