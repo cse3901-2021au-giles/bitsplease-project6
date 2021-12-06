@@ -1,12 +1,11 @@
 <% provide(:title, 'All projects') %>
 <h1>All projects</h1>
-
 <%= will_paginate %>
 <ul class="users">
-    <%= render @projects %>
+  <%= render @projects %>
 </ul>
-<% if current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <div class="new-button">
-  <%= link_to "Create a new project",  controller: "projects", action: "new"  %> 
+    <%= link_to "Create a new project",  controller: "projects", action: "new"  %>
   </div>
 <% end %>

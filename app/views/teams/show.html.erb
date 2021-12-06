@@ -1,33 +1,29 @@
 <% provide(:title, @team.name) %>
 <%= @team.name %>
-
 <div class="parent-info">
-    Project: <%= @team.project_name %>
+  Project: <%= @team.project_name %>
 </div>
-
 <br>
-
-    <div class='association-listing'>
-        <span><%= pluralize(@team.users.length, "student") %></span>
-        <br>
-    
-        <% @team.users.each do |user| %>
-        <div class="rate-student-list">
-            <table><tr>
-            <td><%= user.name %></td>
-            <td><%= link_to "Grade", new_grade_path(team_id: @team.id, user_id: user.id) %></td>
-            </tr></table>
-        </div>
-        <% end %>
-    </div>        
-
+<div class='association-listing'>
+  <span><%= pluralize(@team.users.length, "student") %></span>
+  <br>
+  <% @team.users.each do |user| %>
+    <div class="rate-student-list">
+      <table>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= link_to "Grade", new_grade_path(team_id: @team.id, user_id: user.id) %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
 <br>
-
 <hr>
-<% if current_user.admin? %>
-<%= link_to 'Modify Team', edit_team_path(@team) %> |
+<% if current_user && current_user.admin? %>
+  <%= link_to 'Modify Team', edit_team_path(@team) %> |
 <% end %>
 <%= link_to 'Team Summary', teams_path %>
-<% if current_user.admin? %>
-| <%= link_to "Student Grades", grades_path(team_id: @team.id) %>
+<% if current_user && current_user.admin? %>
+  | <%= link_to "Student Grades", grades_path(team_id: @team.id) %>
 <% end %>

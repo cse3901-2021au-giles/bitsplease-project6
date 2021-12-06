@@ -1,12 +1,11 @@
 <% provide(:title, 'All courses') %>
 <h1>All courses</h1>
-
 <%= will_paginate %>
 <ul class="users">
-    <%= render @courses %>
+  <%= render @courses %>
 </ul>
-<% if current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <div class="new-button">
-  <%= link_to "Create a new course",  controller: "courses", action: "new"  %> 
+    <%= link_to "Create a new course",  controller: "courses", action: "new"  %>
   </div>
 <% end %>

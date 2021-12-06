@@ -6,7 +6,7 @@
 <p>
 <%= @grade.course_no %> | <%= @grade.project_name %> | <%= @grade.team_name %>
 </p>
-<p>Socre: <%= @grade.score %> (<%= @grade.grade_date %>)</p>
+<p>Score: <%= @grade.score %> (<%= @grade.grade_date %>)</p>
 <% if current_user.admin?%>
 graded by: <%= @grade.reviewer_name%>
 <% end %>
