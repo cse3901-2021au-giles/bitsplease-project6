@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   resources :users
   resources :teams
   resources :projects
-  resources :enrollments
-  resources :courses
+  resources :courses do
+    resources :projects
+  end
   resources :feedbacks
 
 end

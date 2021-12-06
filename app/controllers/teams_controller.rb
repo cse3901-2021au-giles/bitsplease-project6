@@ -1,17 +1,22 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.paginate(page: params[:page])
+    if current_user.admin?  
+      @teams=Team.all.order("name");
+    else
+      @teams = Team.all.reject{|p| p.users.exclude? current_user}
+    end
   end
+
   def new
     @team=Team.new
   end
   def create
-    byebug
+    #byebug
     @team = Team.new(team_params)
-    if @team.save(validate: false)
-      flash[:success]="Team created!"
-      redirect_to teams_url
+    if @team.valid? && @team.save(validate: false)
+        flash[:success]="Team created and you can add students now"
+        redirect_to edit_team_path(@team)
     else
       render 'new'
     end
@@ -29,7 +34,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
-      flash[:success]="Your profile has been updated."
+      flash[:success]="The has been updated."
       redirect_to @team
     else
       render 'edit'
@@ -46,6 +51,6 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :description, user_ids:[])
+    params.require(:team).permit(:name, :project_id, user_ids:[])
   end
 end

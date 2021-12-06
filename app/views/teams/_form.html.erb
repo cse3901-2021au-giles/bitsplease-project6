@@ -4,11 +4,15 @@
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
 
+  <%= f.label :Project %>
+  <div class="select">
+    <%= f.collection_select(:project_id, Project.all, :id, :project_name) %>
+  </div>  
 
- 
-    <%= f.label "Team users" %>
+  <% if @team.edit_team %>
+    <%= f.label "Students" %>
     <div class="multi-selection">
-    <%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b| %>
+    <%= f.collection_check_boxes :user_ids, @team.course_users, :id, :name do |b| %>
       <div class="collection-check-box">
         <table><tr>
         <td><%= b.check_box %></td>
@@ -17,7 +21,8 @@
       </div>
     <% end %>
     </div>
-</div>
+  <% end %>
+
   
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 

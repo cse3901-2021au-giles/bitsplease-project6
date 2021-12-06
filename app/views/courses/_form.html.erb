@@ -5,12 +5,12 @@
   <%= f.text_field :course_no, class: 'form-control' %>
 
   <%= f.label :semester %>
-  <%= f.text_field :semester, class: 'form-control' %>
+  <%= f.select :semester,["Spring","Fall", "Summer"] %>
 
  
-    <%= f.label "Instructor and teaching assistants" %>
+    <%= f.label "People (Instructor, TAs, and Students)" %>
     <div class="multi-selection">
-    <%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b| %>
+    <%= f.collection_check_boxes :user_ids, User.where.not(user_role: "Super user").order("user_role").order("name"), :id, :user_display do |b| %>
       <div class="collection-check-box">
         <table><tr>
         <td><%= b.check_box %></td>
@@ -19,7 +19,7 @@
       </div>
     <% end %>
     </div>
-</div>
+
   
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 

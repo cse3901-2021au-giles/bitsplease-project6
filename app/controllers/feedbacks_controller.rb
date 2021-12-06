@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  before_action :set_feedback, only: %i[ show edit update destroy ]
+  before_action :set_feedback, only: %i[show edit update destroy]
 
   # GET /feedbacks or /feedbacks.json
   def index
@@ -7,8 +7,7 @@ class FeedbacksController < ApplicationController
   end
 
   # GET /feedbacks/1 or /feedbacks/1.json
-  def show
-  end
+  def show; end
 
   # GET /feedbacks/new
   def new
@@ -16,8 +15,7 @@ class FeedbacksController < ApplicationController
   end
 
   # GET /feedbacks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /feedbacks or /feedbacks.json
   def create
@@ -25,7 +23,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: "Feedback was successfully created." }
+        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
         format.json { render :show, status: :created, location: @feedback }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class FeedbacksController < ApplicationController
   def update
     respond_to do |format|
       if @feedback.update(feedback_params)
-        format.html { redirect_to @feedback, notice: "Feedback was successfully updated." }
+        format.html { redirect_to @feedback, notice: 'Feedback was successfully updated.' }
         format.json { render :show, status: :ok, location: @feedback }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +49,20 @@ class FeedbacksController < ApplicationController
   def destroy
     @feedback.destroy
     respond_to do |format|
-      format.html { redirect_to feedbacks_url, notice: "Feedback was successfully destroyed." }
+      format.html { redirect_to feedbacks_url, notice: 'Feedback was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feedback
-      @feedback = Feedback.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def feedback_params
-      params.fetch(:feedback, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_feedback
+    @feedback = Feedback.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def feedback_params
+    params.fetch(:feedback, {})
+  end
 end

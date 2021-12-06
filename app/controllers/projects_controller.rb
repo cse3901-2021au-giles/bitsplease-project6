@@ -3,11 +3,13 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.paginate(page: params[:page])
+    
   end
 
   # GET /projects/1 or /projects/1.json
   def show
+    @project=Project.find(params[:id])
   end
 
   # GET /projects/new
@@ -21,39 +23,33 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
+    #byebug
     @project = Project.new(project_params)
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: "Project was successfully created." }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.valid? &&@project.save(validate: false)
+      flash[:success]="Project created!"
+      redirect_to @project
+    else
+      render 'new'
     end
   end
 
+
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: "Project was successfully updated." }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    @project = Project.find(params[:id])
+    if @project.update(project_params)
+      flash[:success]="The project has been updated."
+      redirect_to @project
+    else
+      render 'edit'
     end
   end
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    Project.find(params[:id]).destroy
+    flash[:success] = "The project has been deleted"
+    redirect_to projects_url  
   end
 
   private
@@ -64,6 +60,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.fetch(:project, {})
+      params.require(:project).permit(:project_name, :course_id)
     end
 end

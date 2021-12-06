@@ -218,29 +218,51 @@ div.multi-selection{
   font-weight: normal;
   padding-top: 5px;
 }
-
-
-span.num-association{
-  margin-left: 20px;
+div.parent-info{
+  margin: 10px 0 0 10px;
   font-size: small;
-  font-weight: bold;
 }
-.association-listing{
-  margin-left: 20px;
+
+
+
+.association-listing, .rate-student-list{
+  margin-left: 10px;
   width: 100%;
 }
 .association-listing span{
   font-size: smaller;
-  color: darkgray;
-  padding-right: 10px;
+  padding-left: 10px;
   min-width: 80px;
 }
-.description {
-  font-size: smaller;
-  margin-left: 20px;
-  padding: 5px 0;
+.association-listing .section-header {
+  color: black;
+  font-weight: bold;
 }
+.association-listing .section-item {
+  padding-left: 20px;
+  color: darkgray;
+ }
 select {
   height:32px;
   background-color: white;
+}
+
+.contact-list ul{
+  list-style-type: none;
+}
+
+.jumbotron {
+  background-color: #fff;
+.rate-student-list table tr td{
+  padding: 5px 0;
+}
+.rate-student-list table tr :first-child{
+  width: 150px;
+}
+
+.rate-student-list table tr :nth-child(2) :first-child{
+  white-space: nowrap;
+  font-weight: normal;
+  padding-top: 5px;
+}
 }

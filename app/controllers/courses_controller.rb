@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
+
     @courses = Course.all.paginate(page: params[:page])
   end
 
@@ -14,7 +15,6 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @course.user_ids=[]
   end
    
   def create
