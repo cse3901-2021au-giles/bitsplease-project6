@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
 
   def index
     if current_user.admin?  
@@ -10,6 +11,7 @@ class TeamsController < ApplicationController
 
   def new
     @team=Team.new
+    @edit_team=false
   end
   def create
     #byebug
@@ -28,6 +30,7 @@ class TeamsController < ApplicationController
 
   def edit
     @team=Team.find(params[:id])
+    @edit_team=true
   end
 
   
