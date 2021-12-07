@@ -3,6 +3,7 @@
 team1:
   name: team1
   project_id: project1
+  users: instructor
 
 team2:
   name: team2

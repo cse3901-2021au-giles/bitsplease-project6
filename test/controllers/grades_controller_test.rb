@@ -5,6 +5,10 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
     @course = courses(:course1)
     @grade = grades(:grade1)
     @team1 = teams(:team1)
+    @instructor = users(:instructor)
+    @instructor.password = 'password'
+    @instructor.password_confirmation = 'password'
+    @instructor.save
     @student1 = users(:student1)
     @student1.password = 'password'
     @student1.password_confirmation = 'password'
@@ -16,6 +20,7 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
+    log_in_as(@instructor)
     get grades_url, params: { course_id: @course.id }
     assert_response :success
   end
@@ -38,16 +43,19 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
+    log_in_as(@instructor)
     get edit_grade_url(@grade)
     assert_response :success
   end
 
   test 'should update grade' do
+    log_in_as(@instructor)
     patch grade_url(@grade), params: { grade: { id: @grade, score: '20' } }
     assert_redirected_to grade_url(@grade)
   end
 
   test 'should destroy grade' do
+    log_in_as(@instructor)
     assert_difference('Grade.count', -1) do
       delete grade_url(@grade)
     end

@@ -1,16 +1,16 @@
 class TeamsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: %i[index edit update destroy]
   def index
-    @teams = if current_user && current_user.admin?
-               Team.all.order('name')
-             else
-               Team.all.reject { |p| p.users.exclude? current_user }
-             end
+    if current_user && current_user.admin?
+      @teams = Team.all.order('name')
+    else
+      Team.all.reject { |p| p.users.exclude? current_user }
+    end
   end
 
   def new
-    @team=Team.new
-    @edit_team=false
+    @team = Team.new
+    @edit_team = false
   end
 
   def create
@@ -25,14 +25,13 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team=Team.find(params[:id])
+    @team = Team.find(params[:id])
     @team_in_my_courses = true unless @team.course_admins.exclude?(current_user)
- 
   end
 
   def edit
-    @team=Team.find(params[:id])
-    @edit_team=true
+    @team = Team.find(params[:id])
+    @edit_team = true
   end
 
   def update

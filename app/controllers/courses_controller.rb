@@ -1,9 +1,8 @@
 class CoursesController < ApplicationController
-
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: %i[index edit update destroy]
   # GET /courses or /courses.json
   def index
-    @courses = Course.all.reject{|c| c.users.exclude? current_user}
+    @courses = Course.all.reject { |c| c.users.exclude? current_user }
   end
 
   # GET /courses/1 or /courses/1.json
@@ -14,16 +13,16 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @course.user_ids.push current_user.id;
+    @course.user_ids.push current_user.id if current_user
   end
 
   def create
     @course = Course.new(course_params)
-    if(@course.course_no.empty?)
+    if @course.course_no.empty?
       @course.valid?
       render 'new'
     elsif @course.save(validate: false)
-      flash[:success]="Course created!"
+      flash[:success] = 'Course created!'
       redirect_to courses_url
     else
       render 'new'
@@ -32,8 +31,8 @@ class CoursesController < ApplicationController
 
   def edit
     set_course
-    if(@course.user_ids.exclude?(current_user.id))
-      flash[:success]="You are an instructor or TA of this course."
+    if @course.user_ids.exclude?(current_user.id)
+      flash[:success] = 'You are an instructor or TA of this course.'
       redirect_to @course
     else
       render 'edit'
@@ -53,15 +52,14 @@ class CoursesController < ApplicationController
   def destroy
     set_course
 
-    if(@course.user_ids.exclude?(current_user.id))
-      flash[:success]="You are an instructor or TA of this course."
+    if @course.user_ids.exclude?(current_user.id)
+      flash[:success] = 'You are an instructor or TA of this course.'
       redirect_to @course
-    elsif
-      @course.destroy
-      flash[:success] = "Course deleted"
-      redirect_to courses_url    
+    elsif @course.destroy
+      flash[:success] = 'Course deleted'
+      redirect_to courses_url
     end
-  end 
+  end
 
   private
 
