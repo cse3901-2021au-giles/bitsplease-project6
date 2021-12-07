@@ -13,7 +13,7 @@ class GradeTest < ActiveSupport::TestCase
   end
 
   test 'has name' do
-    assert_equal @test_grade.student_name, @test_student.name
+    assert_equal @test_grade.student_name, @test_student1.name
   end
 
   test 'has team name' do
@@ -25,7 +25,7 @@ class GradeTest < ActiveSupport::TestCase
   end
 
   test 'has project name' do
-    assert_equal @test_grade.project_name, @test_project.name
+    assert_equal @test_grade.project_name, @test_project.project_name
   end
 
   test 'has project id' do
