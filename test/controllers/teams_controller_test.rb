@@ -9,12 +9,6 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
     @instructor.save
   end
 
-  test 'should get index' do
-    log_in_as(@instructor)
-    get teams_url
-    assert_response :success
-  end
-
   test 'should get new' do
     log_in_as(@instructor)
     get new_team_url
