@@ -6,10 +6,10 @@ class Project < ApplicationRecord
 
 
   def course_no
-    @c=Course.find_by(id: course_id)
+    @c=Course.find_by(id: course_id) if @c.nil?
     @c.course_no unless @c.nil?
   end
   def course
-    Course.find_by(id: course_id)
+    @c=Course.find_by(id: course_id) if @c.nil?
   end
 end
