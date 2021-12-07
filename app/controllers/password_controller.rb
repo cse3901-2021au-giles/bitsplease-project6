@@ -13,7 +13,7 @@ class PasswordController < ApplicationController
       url = reset_password_url
       PasswordMailer.reset_password(email_to_reset, url).deliver_now
       flash[:success] = "Password reset email has sent to your email. Please check your inbox and spam"
-      redirect_to login_path
+      redirect_to login_url
     else 
       flash[:danger] = "Not a valid email, please try again!"
       redirect_to mail_reset_password_path
