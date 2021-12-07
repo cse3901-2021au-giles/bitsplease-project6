@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2021_12_06_064339) do
     t.string "password_digest"
   end
 
+  add_foreign_key "courses_users", "courses"
+  add_foreign_key "courses_users", "users"
   add_foreign_key "grades", "teams"
   add_foreign_key "grades", "users", column: "reviewer_id"
   add_foreign_key "grades", "users", column: "student_id"
