@@ -28,7 +28,6 @@ class GradesController < ApplicationController
   # GET /grades or /grades.json
   def index
 
-    byebug
     #check if the user wants to view the grades of a course
     course_id=request.query_parameters["course_id"]
     course_id=course_id.to_i unless course_id.nil?
