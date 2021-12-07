@@ -100,13 +100,11 @@ $ rails server
 
 The two ways to test our application include:
 
-```
-1. Running $ rails test and seeing how many test cases pass/fail.
-```
 
-```
-2. Launch our site by clicking [here](https://bits-please-team.herokuapp.com/) to test our website.
-```
+1. Running $ rails test and seeing how many test cases pass/fail.
+
+2. [Launch our Heroku site](https://bits-please-team.herokuapp.com) 
+
 
 ## Troubleshooting
 If you run into any issues with viewing a page on the site or buttons not working as intended, open the webpage by running rails server. 
