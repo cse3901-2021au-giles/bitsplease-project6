@@ -1,8 +1,5 @@
-#Create a course
-Course.create!(course_no: "CSE-3901",
-semester: "Fall")
 
-# Create an admin user
+# Create 1 super user
 User.create!(name: "Jesse Zheng",
              email: "jessezheng@yahoo.com",
              password:"password",
