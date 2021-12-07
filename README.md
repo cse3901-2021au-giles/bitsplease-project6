@@ -37,10 +37,14 @@ Since it is not a secured email, it could be in the spam box.
 
 ## Work Flows
     1. An instructor or TA creates a course and enroll students into the course
+
     2. An instructor or TA creates one or more projects for the course
+
     3. An instructor or TA creates one or more teams for each projects and assigns the students to the
        team. You can only select students who enroll into the course of the project that you are creating the team for.
+
     4. An instructor or TA can grade students from the team details page where students of the team are listed.
+    
     5. A student can grade his/her peers on the teams they belong to.
 
 ## Viewing Grades
@@ -69,7 +73,7 @@ Instructors and TAs can view grade, remarks, date when grade was added, and the 
 
 ## Grade Modification
     An instructor or TA can modify/delete all grades
-    
+
     A student can only modify/delete grades that they added
 
 ## Getting started
