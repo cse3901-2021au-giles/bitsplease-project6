@@ -1,5 +1,6 @@
 <% provide(:title, 'Grades') %>
 <h3><%= @grade_title %></h3>
+<hr>
 
 
 <ul class="summary-list">
@@ -17,6 +18,8 @@
 <p><%= @course.course_no %> | <%= @project.project_name %> | <%= @team.name %></p>
 <% end %>
 
+<div class='grade-list'>
     <%= render @grades %>
+</div>
 </ul>
 

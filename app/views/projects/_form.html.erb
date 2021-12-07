@@ -4,7 +4,7 @@
   <%= f.text_field :project_name, class: 'form-control' %>
   <%= f.label :Course %>
   <div class="select">
-    <%= f.collection_select(:course_id, Course.all, :id, :course_no) %>
+    <%= f.collection_select(:course_id, @my_courses, :id, :course_no) %>
   </div>
 
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>

@@ -6,7 +6,7 @@
 
   <%= f.label :Project %>
   <div class="select">
-    <%= f.collection_select(:project_id, Project.all, :id, :project_name) %>
+    <%= f.collection_select(:project_id, @course_projects, :id, :project_name) %>
   </div>  
 
   <% if @edit_team %>

@@ -28,4 +28,34 @@ module SessionsHelper
     end
   end
 
+  def staff_user
+      logged_in? and ["Instructor","Teaching Assistant"].include? current_user.user_role
+  end
+
+  def super_user
+    true if current_user.user_role.eql? "Super User"
+  end
+
+  def student_user
+    true if current_user.user_role.eql? "Student"
+  end
+
+  def staff_or_student
+    true if staff_user or student_user
+  end
+
+  def correct_admin_user
+    unless logged_in? and ['Instructor','Teaching Assistant'].include? current_user.user_role
+      flash[:danger]="Your request is denied."
+      redirect_to(root_url) 
+    end
+  end  
+
+  def correct_team_grade_user
+    unless logged_in? and ['Instructor','Teaching Assistant','Student'].include? current_user.user_role
+      flash[:danger]="Your request is denied."
+      redirect_to(root_url) 
+    end
+  end   
+
 end
