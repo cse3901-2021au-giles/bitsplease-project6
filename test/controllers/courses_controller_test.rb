@@ -14,12 +14,13 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    log_in_as(@test_student)
+    log_in_as(@test_instructor)
     get courses_url
     assert_response :success
   end
 
   test 'should get new' do
+    log_in_as(@test_instructor)
     get new_course_url
     assert_response :success
   end
@@ -33,6 +34,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show course' do
+    log_in_as(@test_instructor)
     get course_url(@course)
     assert_response :success
   end

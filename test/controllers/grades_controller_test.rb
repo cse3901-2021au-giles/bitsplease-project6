@@ -26,6 +26,7 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get new' do
+    log_in_as(@test_instructor)
     get new_grade_url
     assert_response :success
   end

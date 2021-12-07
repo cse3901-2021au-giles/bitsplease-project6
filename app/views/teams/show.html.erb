@@ -12,9 +12,7 @@
       <table>
         <tr>
           <td><%= user.name %></td>
-          <% if @team_in_my_courses %>
-            <td><%= link_to "Grade", new_grade_path(team_id: @team.id, user_id: user.id) %></td>
-          <% end %>
+          <td><%= link_to "Grade", new_grade_path(team_id: @team.id, user_id: user.id) %></td>
         </tr>
       </table>
     </div>
@@ -22,10 +20,10 @@
 </div>
 <br>
 <hr>
-<% if @team_in_my_courses %>
+<% if current_user && current_user.admin? %>
   <%= link_to 'Modify Team', edit_team_path(@team) %> |
 <% end %>
 <%= link_to 'Team Summary', teams_path %>
-<% if @team_in_my_courses %>
+<% if current_user && current_user.admin? %>
   | <%= link_to "Student Grades", grades_path(team_id: @team.id) %>
 <% end %>

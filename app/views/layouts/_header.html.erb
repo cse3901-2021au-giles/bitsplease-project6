@@ -17,16 +17,22 @@
       id="bs-example-navbar-collapse-1">
         <li><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
-          <% if current_user.admin? %>
+          <% if staff_user %>
           <li><%= link_to "Courses", courses_path %></li>
           <li><%= link_to "Projects", projects_path %></li>
           <% end %>
 
+          <% if staff_user or student_user %>
           <li><%= link_to "Teams", teams_path %></li>
-          <% if current_user.admin? %>
-          <li><%= link_to "Grades", grades_path(admin_id: current_user.id) %></li>
-          <li><%= link_to "Users", users_path %></li>
-          <% else %>
+          <% end %>
+          <% if staff_user %>
+            <li><%= link_to "Grades", grades_path(admin_id: current_user.id) %></li>
+            <% end %>
+
+          <% if not student_user %>
+            <li><%= link_to "Users", users_path %></li>
+          <% end %>       
+          <% if student_user %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Grades <b class="caret"></b>
