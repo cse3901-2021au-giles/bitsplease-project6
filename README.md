@@ -30,7 +30,7 @@ There are 4 types of users in the application - Super User, Instructor, Teaching
     4. An instructor or TA can grade students from the team details page where students of the team are listed.
     5. A student can grade his/her peers on the teams they belong to.
 
-## Score Board
+## Viewing Grades
 There are 5 different ways you can view the student's grades.
     1. From the course details page - it lists all grades added for all students who enroll into the course.
     2. From the project details page - it lists all grades added for all students who participate in project.
@@ -75,5 +75,11 @@ If the test suite passes, you'll be ready to run the app in a local server:
 $ rails server
 ```
 
-For more information, see the
-[*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
+## Troubleshooting
+If you run into any issues with viewing a page on the site or buttons not working as intended, open the webpage by running rails server. 
+
+Then run the F12 command to see if there are any error messages. If it turns out there are, run the foilowing command:
+
+```
+$ rails webpacker:install
+```
