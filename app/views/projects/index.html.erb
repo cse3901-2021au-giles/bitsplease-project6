@@ -1,7 +1,7 @@
 <% provide(:title, 'All projects') %>
 <h1>All projects</h1>
 <%= will_paginate %>
-<ul class="users">
+<ul class="summary-list">
   <%= render @projects %>
 </ul>
 <% if current_user && current_user.admin? %>

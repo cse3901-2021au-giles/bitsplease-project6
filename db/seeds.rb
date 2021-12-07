@@ -10,6 +10,14 @@ User.create!(name: "Jesse Zheng",
              admin: true,
              user_role:"Super user")
 
+# Create an admin user to test reset email
+User.create!(name: "Sooyoung Jeon",
+  email: "jeonso3412@gmail.com",
+  password:"password",
+  password_confirmation: "password",
+  admin: true,
+  user_role:"Super user")
+
 # Create a main sample user.
 User.create!(name: "Test Student",
              email: "test_student@yahoo.com",
