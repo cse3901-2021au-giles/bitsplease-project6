@@ -1,6 +1,6 @@
 <li>
 
-  <%= link_to project.project_name, project %> 
+  <%= link_to project.project_name, project %> (<%= project.course_no %>)
   <% if current_user.admin? %>
   | <%= link_to "delete", project, method: :delete,  data: { confirm: "Are you sure?" } %>
   <% end %>
