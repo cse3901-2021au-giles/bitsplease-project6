@@ -27,7 +27,6 @@ class GradesController < ApplicationController
 
   # GET /grades or /grades.json
   def index
-
     #check if the user wants to view the grades of a course
     course_id=request.query_parameters["course_id"]
     course_id=course_id.to_i unless course_id.nil?
@@ -58,6 +57,13 @@ class GradesController < ApplicationController
       student_id = session[:student_id] if student_id.nil?
       reviewer_id = session[:reviewer_id] if reviewer_id.nil?
     end
+
+    # need to reset all in the session
+    session[:course_id]=nil
+    session[:project_id]=nil
+    session[:team_id]=nil
+    session[:student_id]=nil
+    session[:reviewer_id]=nil
 
     if !student_id.nil?
       session[:student_id] = student_id
