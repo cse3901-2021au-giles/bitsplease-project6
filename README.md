@@ -90,16 +90,24 @@ Next, migrate the database:
 $ rails db:migrate
 ```
 
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
+Now your ready to run the app in a local server:
 
 ```
 $ rails server
+```
+
+## Testing
+
+The two ways to test our application include:
+
+```
+1. Running $ rails test and seeing how many test cases pass/fail.
+
+```
+
+```
+2. Launch our site by clicking [here](https://bits-please-team.herokuapp.com/) to test our website.
+
 ```
 
 ## Troubleshooting
