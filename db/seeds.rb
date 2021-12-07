@@ -7,9 +7,11 @@ User.create!(name: "Jesse Zheng",
              admin: true,
              user_role:"Super user")
 
+
 # Create 5 teachers
 User.create!(name: "Professor A",
              email: "pa@yahoo.com",
+
              password:"password",
              password_confirmation: "password",
              admin: true,
