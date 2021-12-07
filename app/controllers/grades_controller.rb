@@ -28,6 +28,7 @@ class GradesController < ApplicationController
   # GET /grades or /grades.json
   def index
 
+    byebug
     #check if the user wants to view the grades of a course
     course_id=request.query_parameters["course_id"]
     course_id=course_id.to_i unless course_id.nil?
@@ -48,13 +49,10 @@ class GradesController < ApplicationController
     reviewer_id=request.query_parameters["reviewer_id"]
     reviewer_id=reviewer_id.to_i unless reviewer_id.nil?
     
-    #check if an instructor or TA wants to view all grades he/she has entered.
-    admin_id=request.query_parameters["admin_id"]
-    admin_id=admin_id.to_i unless admin_id.nil?
 
     # if the user clicks on the Grade Summary link on the grade details page,
     # find the last grade summary filtering method and use it.
-    if admin_id.nil? and course_id.nil? and project_id.nil? and team_id.nil? and student_id.nil? and reviewer_id.nil?
+    if course_id.nil? and project_id.nil? and team_id.nil? and student_id.nil? and reviewer_id.nil?
       course_id = session[:course_id] if course_id.nil?
       project_id = session[:project_id] if project_id.nil?
       team_id = session[:team_id] if team_id.nil?
@@ -69,7 +67,8 @@ class GradesController < ApplicationController
       @by_team = false
       @grades = Grade.all.reject { |g| g.student_id != student_id }
     elsif !reviewer_id.nil?
-      @grade_title = "My peers' grades by me"
+      @grade_title = "My peers' grades by me" unless current_user.admin?
+      @grade_title = "All grades" if current_user.admin?
       @by_course = false
       @by_team = false
       session[:reviewer_id] = reviewer_id

@@ -26,7 +26,7 @@
           <li><%= link_to "Teams", teams_path %></li>
           <% end %>
           <% if staff_user %>
-            <li><%= link_to "Grades", grades_path(admin_id: current_user.id) %></li>
+            <li><%= link_to "Grades", grades_path(reviewer_id: current_user.id) %></li>
             <% end %>
 
           <% if not student_user %>
