@@ -9,4 +9,7 @@ class Project < ApplicationRecord
     @c=Course.find_by(id: course_id)
     @c.course_no unless @c.nil?
   end
+  def course
+    Course.find_by(id: course_id)
+  end
 end

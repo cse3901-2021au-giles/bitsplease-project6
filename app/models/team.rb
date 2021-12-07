@@ -3,6 +3,9 @@ class Team < ApplicationRecord
     has_many :grades, :dependent => :destroy
     validates :name, presence: true, length: { maximum: 50 }
 
+    def project
+        Project.find_by(id: project_id)
+    end
     def project_name
         @p=Project.find_by(id: project_id)
         @p.project_name unless @p.nil?
