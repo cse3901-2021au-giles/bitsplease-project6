@@ -105,7 +105,7 @@ The two ways to test our application include:
 ```
 
 ```
-2. Launch our site by clicking [here](https://bits-please-team.herokuapp.com/) to test our website.
+2. Launch our site by clicking **[here](https://bits-please-team.herokuapp.com/)** to test our website.
 ```
 
 ## Troubleshooting
