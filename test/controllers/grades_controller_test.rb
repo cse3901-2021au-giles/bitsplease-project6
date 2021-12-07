@@ -25,12 +25,6 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get new' do
-    log_in_as(@test_instructor)
-    get new_grade_url
-    assert_response :success
-  end
-
   test 'should create grade' do
     log_in_as(@student1)
     assert_difference('Grade.count') do
