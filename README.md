@@ -24,8 +24,8 @@ There are 4 types of users in the application - Super User, Instructor, Teaching
 
 ## User Password
 Including all types of users in the application, correct password should be used.  
-If the user forgot their password, they can reset by sending an email from our application.  
-MAKE SURE TO CHECK THE SPAM BOX
+If the user forgot their password, they can reset by sending an email from our application.    
+MAKE SURE TO CHECK THE SPAM BOX    
 Since it is not a secured email, it could be in the spam box.  
 
 ## Work Flows
