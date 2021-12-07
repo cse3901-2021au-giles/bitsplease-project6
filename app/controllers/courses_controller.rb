@@ -33,11 +33,11 @@ class CoursesController < ApplicationController
     #Make sure the Course object is valid before creating it. Or it will display
     # an error message for the user to complete the form before trying again
     @course = Course.new(course_params)
-    if(@course.course_no.empty?)
+    if @course.course_no.empty?
       @course.valid?
       render 'new'
     elsif @course.save(validate: false)
-      flash[:success]="Course created!"
+      flash[:success] = 'Course created!'
       redirect_to courses_url
     else
       render 'new'
@@ -55,12 +55,11 @@ class CoursesController < ApplicationController
     end
   end
 
-
   def update
     # Update the course. Show the updated course info if it succeeds, or returns to 
     # the modify course page.
     if @course.update(course_params)
-      flash[:success]="The course has been updated."
+      flash[:success] = 'The course has been updated.'
       redirect_to @course
     else
       render 'edit'
@@ -73,21 +72,21 @@ class CoursesController < ApplicationController
     if(@course.user_ids.exclude?(current_user.id))
       flash[:success]="You are not an instructor or TA of this course."
       redirect_to @course
-    elsif
-      @course.destroy
-      flash[:success] = "Course deleted"
-      redirect_to courses_url    
+    elsif @course.destroy
+      flash[:success] = 'Course deleted'
+      redirect_to courses_url
     end
-  end 
+  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      p=params.require(:course).permit(:course_no, :semester, user_ids:[])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def course_params
+    p = params.require(:course).permit(:course_no, :semester, user_ids: [])
+  end
 end

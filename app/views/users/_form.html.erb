@@ -1,33 +1,25 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
-
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
-
   <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
-
-  
-  <% if current_user.user_role=="Super user" %>
-  <%= f.select :user_role,["Instructor","Teaching Assistant","Student"] %>
-  <% end %>
-
- <% if current_user.user_role=="Instructor" %>
-  <%= f.select :user_role,["Teaching Assistant","Student"] %>
-  <% end %>
- 
-  <% if current_user.user_role=="Teaching Assistant" %>
-  <%= f.select :user_role,["Student","Teaching Assistant"] %>
-  <% end %>
-  
-
-  <% if @user==current_user %>
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
-  <% end %>
-
+  <% if current_user%>
+    <% if current_user.user_role=="Super user" %>
+      <%= f.select :user_role,["Instructor","Teaching Assistant","Student"] %>
+    <% end %>
+    <% if current_user.user_role=="Instructor" %>
+      <%= f.select :user_role,["Teaching Assistant","Student"] %>
+    <% end %>
+    <% if current_user.user_role=="Teaching Assistant" %>
+      <%= f.select :user_role,["Student","Teaching Assistant"] %>
+    <% end %>
+    <% if @user==current_user %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <% end %>
+  <% end%>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

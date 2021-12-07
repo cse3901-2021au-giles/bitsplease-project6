@@ -1,15 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+admin:
   name: MyString
-  email: MyString
-  admin: false
+  email: admin@example.com
+  admin: true
   user_role: MyString
-  string: MyString
 
-two:
+instructor:
   name: MyString
-  email: MyString
+  email: instructor@example.com
+  admin: true
+  user_role: Instructor
+
+student1:
+  name: MyString
+  email: student1@example.com
   admin: false
-  user_role: MyString
-  string: MyString
+  user_role: Student
+
+student2:
+  name: MyString
+  email: student2@example.com
+  admin: false
+  user_role: Student
+
+ta1:
+  name: MyString
+  email: ta1@example.com
+  admin: false
+  user_role: Teaching Assistant

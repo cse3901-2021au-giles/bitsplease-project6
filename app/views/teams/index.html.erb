@@ -1,14 +1,11 @@
 <% provide(:title, 'All teams') %>
 <h1>All teams</h1>
 <hr>
-
 <ul class="summary-list">
-    <%= render @teams %>
+  <%= render @teams %>
 </ul>
-<% if current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <div class="new-button">
-  <%= link_to "Create a new team",  controller: "teams", action: "new"  %> 
+    <%= link_to "Create a new team",  controller: "teams", action: "new"  %>
   </div>
 <% end %>
-
-
