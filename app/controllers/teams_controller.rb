@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
     if current_user.admin?
       @teams = Team.all.reject { |t| t.project.course.user_ids.exclude?(current_user.id) }
     else
-      Team.all.reject { |p| p.users.exclude? current_user }
+      @teams=Team.all.reject { |t| t.users.exclude? current_user }
     end
   end
 
