@@ -17,35 +17,55 @@ Users and grades have a parent-child relationship. A student can have many grade
 
 ## User Role
 There are 4 types of users in the application - Super User, Instructor, Teaching Assistants, and Student
+    
     1. The super-user is a built-in user who can create/modify the other types of users.
+
     2. An instructor can create/modify TAs and students.
+
     3. A TA can create/modify students
+
     4. A student can only modify his/her own information.
 
 ## User Password
-Including all types of users in the application, correct password should be used.  
-If the user forgot their password, they can reset by sending an email from our application.   
+Including all types of users in the application, correct password should be used.
+
+If the user forgot their password, they can reset by sending an email from our application.
+
 MAKE SURE TO CHECK THE SPAM BOX    
+
 Since it is not a secured email, it could be in the spam box.  
 
 ## Work Flows
     1. An instructor or TA creates a course and enroll students into the course
+
     2. An instructor or TA creates one or more projects for the course
+
     3. An instructor or TA creates one or more teams for each projects and assigns the students to the
        team. You can only select students who enroll into the course of the project that you are creating the team for.
+
     4. An instructor or TA can grade students from the team details page where students of the team are listed.
+    
     5. A student can grade his/her peers on the teams they belong to.
 
 ## Viewing Grades
 There are 5 different ways you can view the student's grades.
+
     1. From the course details page - it lists all grades added for all students who enroll into the course.
+
     2. From the project details page - it lists all grades added for all students who participate in project.
+
     3. From the team details page - it lists all grades added for all students on the team.
+
     4. From the Grades menu
+
             For an instructor, it lists all grades the instructor has graded.
+
             For a TA, it lists all grades the TA has graded
+
             For a student, it has 2 sub-menus
+
                     A student can view all grades added for him/her
+
                     A student can view all grades he/she has added for his peer
 
 ## Grade Details 
@@ -53,6 +73,7 @@ Instructors and TAs can view grade, remarks, date when grade was added, and the 
 
 ## Grade Modification
     An instructor or TA can modify/delete all grades
+
     A student can only modify/delete grades that they added
 
 ## Getting started
@@ -69,16 +90,22 @@ Next, migrate the database:
 $ rails db:migrate
 ```
 
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
+Now your ready to run the app in a local server:
 
 ```
 $ rails server
+```
+
+## Testing
+
+The two ways to test our application include:
+
+```
+1. Running $ rails test and seeing how many test cases pass/fail.
+```
+
+```
+2. Launch our site by clicking [here](https://bits-please-team.herokuapp.com/) to test our website.
 ```
 
 ## Troubleshooting

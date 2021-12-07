@@ -1,8 +1,8 @@
-require "test_helper"
+require 'test_helper'
 
 class PasswordControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get password_new_url
+  test 'should get new' do
+    get reset_password_url
     assert_response :success
   end
 end

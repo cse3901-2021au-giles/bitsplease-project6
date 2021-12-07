@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_12_06_064339) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "project_id", null: false
+    t.integer "project_id"
     t.index ["project_id"], name: "index_teams_on_project_id"
   end
 

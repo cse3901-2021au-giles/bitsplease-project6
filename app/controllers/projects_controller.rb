@@ -1,25 +1,44 @@
+=begin
+  A control to process the project view, create, update, delete requests
+  Only an instructor or TA can create, update, or delete a project
+  The instructor or TA can only view the projects belong to courses that they teach.
+=end
 class ProjectsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  # only available to instructors and TAs
+  before_action :correct_admin_user, only: [:index, :show, :new, :edit, :update, :destroy]
+
+  # set @project object
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
   def index
-    @projects = Project.all.paginate(page: params[:page])
-    
+    # Only projects belong to the courses that the current user teaches
+    @projects = Project.all.order("project_name asc").reject{|p| p.course.users.exclude? current_user}
   end
 
   # GET /projects/1 or /projects/1.json
   def show
-    @project=Project.find(params[:id])
   end
 
   # GET /projects/new
   def new
     @project = Project.new
+   #load all courses that the current user teaches
+   @my_courses=Course.all.order("course_no asc").reject{|c| c.users.exclude? current_user}
+
   end
 
   # GET /projects/1/edit
   def edit
+    #load all courses that the current user teaches
+    @my_courses=Course.all.order("course_no asc").reject{|c| c.users.exclude? current_user}
+
+    if(@project.course.user_ids.exclude?(current_user.id))
+      flash[:success]="You are not an instructor or TA of the course of this project"
+      redirect_to @project
+    else
+        render 'edit'
+    end
   end
 
   # POST /projects or /projects.json
@@ -37,7 +56,6 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1 or /projects/1.json
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:success]="The project has been updated."
       redirect_to @project
@@ -48,9 +66,16 @@ class ProjectsController < ApplicationController
 
   # DELETE /projects/1 or /projects/1.json
   def destroy
-    Project.find(params[:id]).destroy
-    flash[:success] = "The project has been deleted"
-    redirect_to projects_url  
+    # make sure the current user is an instructor or TA of the project before letting him/her
+    # delete it
+    if(@project.course.user_ids.exclude?(current_user.id))
+      flash[:success]="You are not an instructor or TA of the course of this project"
+      redirect_to @course
+    else
+      @project.destroy
+      flash[:success] = "The project has been deleted"
+      redirect_to projects_url  
+    end
   end
 
   private
