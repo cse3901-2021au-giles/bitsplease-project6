@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/mail_reset_password',   to: 'password#new'
+  post '/mail_reset_password',   to: 'password#mail_reset'
+  get '/reset_password',    to: 'password#reset'
+  post '/reset_password',   to: 'password#reset_password'
   get 'teams/new'
   get 'teams/edit'
   get 'teams/delete'
