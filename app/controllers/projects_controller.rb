@@ -23,13 +23,19 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+   #load all courses that the current user teaches
+   @my_courses=Course.all.order("course_no asc").reject{|c| c.users.exclude? current_user}
+
   end
 
   # GET /projects/1/edit
   def edit
+    #load all courses that the current user teaches
+    @my_courses=Course.all.order("course_no asc").reject{|c| c.users.exclude? current_user}
+
     if(@project.course.user_ids.exclude?(current_user.id))
       flash[:success]="You are not an instructor or TA of the course of this project"
-      redirect_to @course
+      redirect_to @project
     else
         render 'edit'
     end
