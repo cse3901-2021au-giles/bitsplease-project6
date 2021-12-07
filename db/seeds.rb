@@ -108,70 +108,70 @@ User.create!(name: "Student 1",
              email: "s1@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 2",
              email: "s2@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 3",
              email: "s3@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 4",
              email: "s4@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 5",
              email: "s5@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 6",
              email: "s6@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 7",
              email: "s7@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 8",
              email: "s8@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 9",
              email: "s9@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 User.create!(name: "Student 10",
              email: "s10@yahoo.com",
              password:"password",
              password_confirmation: "password",
-             admin: true,
+             admin: false,
              user_role:"Student")
 
 # Generate 30 more students.
