@@ -26,6 +26,11 @@ class ProjectsController < ApplicationController
    #load all courses that the current user teaches
    @my_courses=Course.all.order("course_no asc").reject{|c| c.users.exclude? current_user}
 
+   if @my_courses.empty?
+    flash[:danger]="Please create one or more courses before creating a project."
+    redirect_to projects_path
+  end
+
   end
 
   # GET /projects/1/edit

@@ -22,6 +22,10 @@ class TeamsController < ApplicationController
     @edit_team = false
     # load all projects belong to courses that the current user teaches
     @course_projects = Project.all.order('project_name asc').reject { |p| p.course.users.exclude? current_user }
+    if @course_projects.empty?
+      flash[:danger]="Please create one or more projects before creating a team."
+      redirect_to projects_path
+    end
   end
 
   def create
