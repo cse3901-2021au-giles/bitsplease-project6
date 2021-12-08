@@ -213,12 +213,13 @@ Student accounts:
 
 
     E. View grades that have been given to the student 
+    
         a. Select Grade menu to see all grades that you have added
 
         b. Go to Course, then the course details page by clicking on the link on the course number, select the Student Grades link to view all grades of the students in the class
 
         c. Go to Project, then project details page by clicking on the link on the project name, select the Student Grades link to view all grades of the students who participate in the project
-        
+
         d. Go to Team, then team details page by clicking on the link on the team name, select the Student Grades link to view all grades of the students who are members of the team.
 
     F. Go to Users page, verify that you can add/modify/delete users
