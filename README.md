@@ -102,6 +102,18 @@ Students can view grade, remarks, and the date when the grade was added.
 
     A student can only modify/delete grades that he/she has added
 
+## Extensions and Additional Features
+Authentication/Login
+
+Score Dashboard (Provides 5 different ways of accessing student reports )
+
+Course/Project/Team Management
+
+Changing Enrollment
+
+[Heroku Deployment](https://bits-please-team.herokuapp.com)
+
+
 ## Getting started
 Option 1. To run the application on heroku:
 
@@ -234,5 +246,8 @@ Student accounts:
 After the steps above, you can run the command below to run the automated testing scripts
 
 $ rails test 
+
+
+
 
 
