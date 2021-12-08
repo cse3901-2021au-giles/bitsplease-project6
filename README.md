@@ -105,7 +105,7 @@ Students can view grade, remarks, and the date when the grade was added.
 ## Getting started
 Option 1. To run the application on heroku:
 
-    [Launch our Heroku site](https://bits-please-team.herokuapp.com) 
+[Launch our Heroku site](https://bits-please-team.herokuapp.com) 
 
 Option 2, to run the application on your ubuntu system, please follow the steps below:
 
