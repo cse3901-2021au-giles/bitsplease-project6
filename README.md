@@ -2,7 +2,7 @@
 
 ## Database Design
 
-Courses, Project, Teams, Users, and Grades are the main components of the application
+Courses, Projects, Teams, Users, and Grades are the main components of the application
 
 Courses and projects have a parent-child relationship. A course can have many projects but a project 
 can only belong to one and only one course.
@@ -25,6 +25,30 @@ There are 4 types of users in the application - Super User, Instructor, Teaching
     3. A TA can create/modify students
 
     4. A student can only modify his/her own information.
+    
+    5. Instructors and TAs can grade all students in the class they teach. 
+
+    6. Instructors and TAs can create courses and then projects and teams for the courses.
+
+    7. Instructors and TAs can enroll/delete students into the courses that they teach.
+
+    8. Instructors and TAs can create projects for the courses they teach
+
+    9. Instructors and TAs can view/modify projects for the courses they teach
+
+    10. Instructors and TAs can view/modify teams for the courses they teach
+
+    11. Instructors and TAs can grades all students in the courses they teach
+
+    12. Instructors and TAs can view/modify all studensts's grades in the class they teach, regardless   who originally added the grades. The views will show original users who provided the grades
+
+    13. Students can view all grades that are given to them. But they will not know who provided the grades.
+    
+    14. Students cannot modify or delete the grades. But they can modify/delete grades that they have created for themselves.
+
+    15. A student can grade other students who are in the same teams he/she is a member of, and the student can modify/delete those grades that he/she has created for other students.
+
+    
 
 ## User Password
 Including all types of users in the application, correct password should be used.
@@ -50,11 +74,11 @@ Since it is not a secured email, it could be in the spam box.
 ## Viewing Grades
 There are 5 different ways you can view the student's grades.
 
-    1. From the course details page - it lists all grades added for all students who enroll into the course.
+    1. Through "Student Grades" link on the course details page - it lists all grades added for all students who enroll into the course.
 
-    2. From the project details page - it lists all grades added for all students who participate in project.
+    2. Through "Student Grades" link on the project details page - it lists all grades added for all students who participate in the project.
 
-    3. From the team details page - it lists all grades added for all students on the team.
+    3. Through "Student Grades" link on the team details page - it lists all grades added for all students of the team.
 
     4. From the Grades menu
 
@@ -66,22 +90,35 @@ There are 5 different ways you can view the student's grades.
 
                     A student can view all grades added for him/her
 
-                    A student can view all grades he/she has added for his peer
+                    A student can view all grades he/she has added for his/her peer
 
 ## Grade Details 
-Instructors and TAs can view grade, remarks, date when grade was added, and the grader who added it
+Instructors and TAs can view grade, remarks, the date when grade was added, and the grader who added it
+
+Students can view grade, remarks, and the date when the grade was added.
 
 ## Grade Modification
     An instructor or TA can modify/delete all grades
 
-    A student can only modify/delete grades that they added
+    A student can only modify/delete grades that he/she has added
 
 ## Getting started
+Option 1. To run the application on heroku:
 
-To get started with the app, clone the repo and then install the needed gems:
+    [Launch our Heroku site](https://bits-please-team.herokuapp.com) 
+
+Option 2, to run the application on your ubuntu system, please follow the steps below:
+
+```
+clone the repo and then install the needed gems:
+```
 
 ```
 $ bundle install --without production
+```
+
+```
+$ bundle update --without production
 ```
 
 Next, migrate the database:
@@ -90,27 +127,68 @@ Next, migrate the database:
 $ rails db:migrate
 ```
 
+```
+$ rails db:seed
+```
+
 Now your ready to run the app in a local server:
 
 ```
 $ rails server
 ```
 
-## Testing
-
-The two ways to test our application include:
-
-
-1. Running $ rails test and seeing how many test cases pass/fail.
-
-2. [Launch our Heroku site](https://bits-please-team.herokuapp.com) 
-
-
 ## Troubleshooting
-If you run into any issues with viewing a page on the site or buttons not working as intended, open the webpage by running rails server. 
-
-Then run the F12 command to see if there are any error messages. If it turns out there are, run the foilowing command:
+Depending on your system, you may need to run
 
 ```
 $ rails webpacker:install
 ```
+
+However, the webpacker:install tends to remove the jquery from the environment.js file. Please make sure the following lines are in config/webpack/environment.js:
+
+```
+const { environment } = require('@rails/webpacker')
+const webpack = require('webpack')
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    $: 'jquery/src/jquery',
+    jQuery: 'jquery/src/jquery'
+  })
+)
+module.exports = environment
+
+```
+
+ If you run into any issues with our application, please contact our team. 
+
+## Items that have been tested
+1. Make sure the database has pre-populated data. To verify that, you can try to login as professor A
+    email: pa@yahoo.com
+    password: password
+    if the account does not exist, please run the command below to populate the database:
+```
+    $ rails db:seed
+```
+    Please contact our team if you have run into problems executing the command.
+
+2. Login as professor A
+    A. Create a course - make sure the professor is automatically selected as the instructor of the course. Select some students and a couple of TAs and create the course
+    B. Create a project for the course
+    C. Create 2 teams for the course with a few students in each team
+    D. Add grades for each student in the team
+    E. View grades that have been given to the student 
+        a. Select Grade menu to see all grades that you have added
+        b. Go to Course, then the course details page by clicking on the link on the course number, select the Student Grades link to view all grades of the students in the class
+        c. Go to Project, then project details page by clicking on the link on the project name, select the Student Grades link to view all grades of the students who participate in the project
+        d. Go to Team, then team details page by clicking on the link on the team name, select the Student Grades link to view all grades of the students who are members of the team.
+    F. Go to Users page, verify that you can add/modify/delete users
+    G. Select Account/Update my Profile, verify that you can modify your info.
+
+
+## Automated Testing
+
+After the steps above, you can run the command below to run the automated testing scripts
+
+$ rails test 
+
+
