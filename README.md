@@ -163,6 +163,7 @@ module.exports = environment
 
  ## Account to use for testing
  The password is password for all accounts below:
+ 
  Instructor accounts:
  
  ```
@@ -197,22 +198,34 @@ Student accounts:
     email: pa@yahoo.com
     password: password
     if the account does not exist, please run the command below to populate the database:
-```
+    ```
     $ rails db:seed
-```
+    ```
     Please contact our team if you have run into problems executing the command.
 
-2. Login as professor A
+2. Login as professor 
+
     A. Create a course - make sure the professor is automatically selected as the instructor of the course. Select some students and a couple of TAs and create the course
+
     B. Create a project for the course
+
     C. Create 2 teams for the course with a few students in each team
+
     D. Add grades for each student in the team
+
+
     E. View grades that have been given to the student 
+
         a. Select Grade menu to see all grades that you have added
+
         b. Go to Course, then the course details page by clicking on the link on the course number, select the Student Grades link to view all grades of the students in the class
+
         c. Go to Project, then project details page by clicking on the link on the project name, select the Student Grades link to view all grades of the students who participate in the project
+
         d. Go to Team, then team details page by clicking on the link on the team name, select the Student Grades link to view all grades of the students who are members of the team.
+
     F. Go to Users page, verify that you can add/modify/delete users
+
     G. Select Account/Update my Profile, verify that you can modify your info.
 
 
