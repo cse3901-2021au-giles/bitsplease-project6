@@ -24,6 +24,12 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
     get grades_url, params: { course_id: @course.id }
     assert_response :success
   end
+  test 'should get new' do
+    log_in_as(@student1)
+    get new_grade_url
+    assert_response :success
+  end
+
 
   test 'should create grade' do
     log_in_as(@student1)

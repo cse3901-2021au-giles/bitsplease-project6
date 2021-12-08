@@ -3,7 +3,9 @@
 team1:
   name: team1
   project_id: 1
-  users: instructor
+  users: student1
 
 team2:
   name: team2
+  project_id: 1
+  users: student2
