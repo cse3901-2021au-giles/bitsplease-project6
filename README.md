@@ -161,6 +161,37 @@ module.exports = environment
 
  If you run into any issues with our application, please contact our team. 
 
+ ## Account to use for testing
+ The password is password for all accounts below:
+ Instructor accounts:
+ 
+ ```
+ pa@yahoo.com
+ pb@yahoo.com
+ pc@yahoo.com
+ pd@yahoo.com
+ pe@yahoo.com
+ ```
+ TA accounts:
+
+ ```
+ ta1@yahoo.com
+ ta2@yahoo.com
+ ta3@yahoo.com
+ ta4@yahoo.com
+ ta5@yahoo.com
+ ```
+Student accounts:
+
+ ```
+ s1@yahoo.com
+ s2@yahoo.com
+ s3@yahoo.com
+ s4@yahoo.com
+ s5@yahoo.com
+ ```
+
+
 ## Items that have been tested
 1. Make sure the database has pre-populated data. To verify that, you can try to login as professor A
     email: pa@yahoo.com
